@@ -1,0 +1,89 @@
+.hurts-of-kindred {
+  margin: 100px 0;
+
+  @include media-breakpoint-down(sm){
+    margin: 60px 0;
+  }
+
+  &__title {
+    font-size: clamp(24px, 2.5vw, 48px);
+    text-align: center;
+    font-weight: 700;
+    letter-spacing: 1.1px;
+    margin-bottom: 20px;
+
+    @include media-breakpoint-down(sm){
+      line-height: 1.4;
+    }
+  }
+
+  &__text {
+    font-size: clamp(16px, 2.5vw, 24px);
+    text-align: center;
+    max-width: 990px;
+    margin: 0 auto;
+    line-height: 1.48;
+    letter-spacing: 1px;
+  }
+
+  .volunteer-list {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    margin-top: 65px;
+    gap: 30px;
+    justify-items: center;
+
+    @include media-breakpoint-down(lg){
+      grid-template-columns: 1fr 1fr;
+    }
+
+    @include media-breakpoint-down(xs){
+      grid-template-columns: 1fr;
+      justify-items: start;
+      margin-top: 40px;
+      gap: 35px
+    }
+
+    .user {
+      display: flex;
+      align-items: center;
+      gap: 15px;
+
+      &__img {
+        max-width: 140px;
+        max-height: 140px;
+        border-radius: 50%;
+        overflow: hidden;
+        aspect-ratio: 1/1;
+
+        @include media-breakpoint-down(sm){
+          max-width: 100px;
+          max-height: 100px;
+        }
+
+        img {
+          width: 100%;
+          height: 100%;
+        }
+      }
+
+      &__name {
+        font-size: clamp(20px, 2.5vw, 32px);
+        margin-bottom: 15px;
+      }
+
+      &__all, &__succsesful, &__reg-date {
+        font-size: clamp(14px, 2.5vw, 24px);
+      }
+
+      &__all {
+        margin-bottom: 5px;
+      }
+
+      &__reg-date {
+        margin-top: 15px;
+      }
+    }
+  }
+
+}

@@ -1,0 +1,170 @@
+.header {
+  background-color: $headerFooterBg;
+  position: fixed;
+  width: 100%;
+  top: 0;
+  left: 0;
+  z-index: 1000;
+
+  &__content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    padding: 25px 0;
+    gap: 20px;
+
+    @include media-breakpoint-down(sm) {
+      padding: 12px 0;
+    }
+  }
+
+  &__logo {
+    width: 61px;
+    height: 61px;
+
+    @include media-breakpoint-down(sm) {
+      width: 61px;
+      height: 41px;
+    }
+
+    svg {
+      width: 100%;
+      height: 100%;
+    }
+  }
+
+  .menu {
+    margin-top: 20px;
+    margin-right: 22px;
+
+    @include media-breakpoint-down(sm) {
+      position: absolute;
+      overflow: auto;
+      width: 100vw;
+      height: calc(100dvh - 65px);
+      top: 65px;
+      right: 100%;
+      opacity: 0;
+      margin: 0;
+      background: $headerFooterBg;
+      padding: 40px 20px;
+      transition: right 0.2s ease-in-out, opacity 0.2s ease-in-out;
+    }
+
+    &__list {
+      display: flex;
+      gap: 37px;
+
+      @include media-breakpoint-down(md) {
+        gap: 20px;
+      }
+
+      @include media-breakpoint-down(sm) {
+        flex-direction: column;
+        gap: 25px;
+      }
+    }
+
+    &__item {
+      font-weight: 700;
+      font-size: clamp(16px, 2.5vw, 24px);
+      letter-spacing: 0.6px;
+
+      a {
+        color: $fontColorBlack;
+        transition: color 0.2s ease-in-out;
+
+        &:hover {
+          color: $orange;
+        }
+      }
+    }
+
+    &_active {
+      right: 0;
+      opacity: 1;
+
+      &::before {
+        content: '';
+        position: fixed;
+        top: 65px;
+        left: 0;
+        width: 100%;
+        height: 2px;
+        background: $fontColorBlack;
+        opacity: 0.3;
+      }
+    }
+  }
+
+  &__account {
+    width: 36px;
+    height: 43px;
+    margin-right: 4px;
+
+    @include media-breakpoint-down(sm) {
+      display: none;
+    }
+
+    svg {
+      width: 100%;
+      height: 100%;
+    }
+  }
+
+  .burger__btn {
+    display: none;
+    width: 15px;
+    height: 10px;
+    position: relative;
+
+    @include media-breakpoint-down(sm) {
+      display: block;
+    }
+
+    span {
+      position: absolute;
+      top: 41%;
+      width: 100%;
+      height: 2px;
+      border-radius: 3px;
+      background-color: $orange;
+      transform: translateY(-50%);
+      transition: transform 0.3s ease-in-out, top 0.2s ease-in-out, bottom 0.2s ease-in-out;
+
+      &:first-child {
+        top: 0;
+      }
+
+      &:last-child {
+        top: auto;
+        bottom: 0;
+      }
+    }
+
+    &_active {
+      span {
+        width: 0;
+        height: 0;
+
+        &:first-child, &:last-child {
+          width: 100%;
+          height: 2px;
+        }
+
+        &:first-child {
+          top: auto;
+          bottom: 40%;
+          transform: rotate(45deg);
+        }
+
+        &:last-child {
+          bottom: auto;
+          top: 40%;
+          transform: rotate(-45deg);
+        }
+      }
+    }
+  }
+}

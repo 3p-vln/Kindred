@@ -1,0 +1,40 @@
+.actual {
+  margin-top: 100px;
+
+  @include media-breakpoint-down(md){
+    margin-top: 75px;
+  }
+
+  &__title{
+    font-size: clamp(24px, 2.5vw, 48px);
+    font-weight: 700;
+    text-align: center;
+    letter-spacing: 1.6px;
+    margin-bottom: 48px;
+
+    @include media-breakpoint-down(xs){
+      letter-spacing: 1px;
+      margin-bottom: 40px;
+    }
+  }
+
+  &__list {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    gap: 31px;
+
+    @include media-breakpoint-down(lg){
+      gap: 9px;
+    }
+
+    @include media-breakpoint-down(md){
+      grid-template-columns: 1fr 1fr;
+      gap: 20px;
+    }
+
+    @include media-breakpoint-down(xs){
+      grid-template-columns: 1fr;
+      gap: 23px;
+    }
+  }
+}
