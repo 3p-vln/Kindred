@@ -5,18 +5,18 @@
   <meta charset="UTF-8" />
   <link rel="icon" type="image/svg+xml" href="/Kindred/logo.svg" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Kindred. Головна сторінка</title>
-  <script type="module" crossorigin src="/Kindred/assets/index-CTLoQL9c.js"></script>
+  <title>Kindred. Каталог зборів</title>
+  <script type="module" crossorigin src="/Kindred/assets/catalogue-C2h9hiva.js"></script>
   <link rel="modulepreload" crossorigin href="/Kindred/assets/render-prod-cards-DzjP4kRy.js">
   <link rel="stylesheet" crossorigin href="/Kindred/assets/render-prod-cards-CvCrRidD.css">
-  <link rel="stylesheet" crossorigin href="/Kindred/assets/index-DlGdR23V.css">
+  <link rel="stylesheet" crossorigin href="/Kindred/assets/catalogue-C6ka__Pj.css">
 </head>
 
 <body>
 
 <div class="wrapper">
 
-    <header class="header">
+  <header class="header">
   <div class="container">
     <div class="header__content">
       <a class="header__logo" href="index.html">
@@ -50,137 +50,133 @@
 </header>
 
 
-    <div class="page">
-        <div class="space-that-unites">
+  <div class="page">
+    <div class="help-that-change">
     <div class="container">
-        <div class="space-that-unites__content">
-            <div class="space-that-unites__text-block">
-                <h1 class="space-that-unites__title">
-                    <span>Kindred</span> — це простір, який об’єднує людей навколо допомоги
+        <div class="help-that-change__content">
+            <div class="help-that-change__img">
+                <img src="/Kindred/assets/help-CZDTP947.png" alt="help">
+            </div>
+
+            <div class="help-that-change__info">
+                <h1 class="help-that-change__title">
+                    Допомога, яка змінює життя
                 </h1>
 
-                <div class="space-that-unites__text">
-                    Тут кожен може стати частиною спільноти:
-
-                    <ul class="space-that-unites__list">
-                        <li class="space-that-unites__item">
-                            волонтер — щоб публікувати збори, новини чи пошук допомоги;
-                        </li>
-
-                        <li class="space-that-unites__item">користувач — щоб знаходити актуальні ініціативи й підтримувати
-                            їх.
-                        </li>
-                    </ul>
-                </div>
-
-                <p class="space-that-unites__text">
-                    Kindred — це не одна організація. Це відкрита платформа для всіх, хто творить добро поруч.
+                <p class="help-that-change__text">
+                    Кожен збір тут — чиясь надія. Чиясь мрія, безпека, шанс, життя.
+                    <br><br>
+                    Обирай те, що тебе торкає. Долучайся до добра. Навіть маленька підтримка здатна стати великим кроком для
+                    когось.
+                    <br><br>
+                    Разом ми можемо більше.
                 </p>
             </div>
-
-            <div class="space-that-unites__img">
-                <img src="/Kindred/assets/orange-peoples-CSBNi73I.png" alt="orange-peoples">
-            </div>
         </div>
     </div>
 </div>
 
-        <div class="actual">
-    <div class="container">
-        <div class="actual__content">
-            <h2 class="actual__title">Актуальні збори</h2>
-            
-            <div class="actual__list">
+    <div class="catalogue">
+  <div class="container">
+    <div class="catalogue__content filter">
+      <h2 class="filter__title">Фільтрація</h2>
 
-            </div>
+      <div class="filter__score">
+        <h3 class="filter__liable">
+          За рейтингом волонтера:
+        </h3>
+
+        <ul class="filter__list">
+          <li class="filter__list-item">
+            <label for="five">
+              <input type="radio" id="five" name="score">
+
+              <span class="custom-radio"></span>
+
+              5
+              <svg>
+                <use href="#star"></use>
+              </svg>
+            </label>
+          </li>
+
+          <li class="filter__list-item">
+            <label for="four">
+              <input type="radio" id="four" name="score">
+
+              <span class="custom-radio"></span>
+
+              4
+              <svg>
+                <use href="#star"></use>
+              </svg>
+            </label>
+          </li>
+
+          <li class="filter__list-item">
+            <label for="three">
+              <input type="radio" id="three" name="score">
+
+              <span class="custom-radio"></span>
+
+              3
+              <svg>
+                <use href="#star"></use>
+              </svg>
+            </label>
+          </li>
+
+          <li class="filter__list-item">
+            <label for="two">
+              <input type="radio" id="two" name="score">
+
+              <span class="custom-radio"></span>
+
+              2
+              <svg>
+                <use href="#star"></use>
+              </svg>
+            </label>
+          </li>
+
+          <li class="filter__list-item">
+            <label for="one">
+              <input type="radio" id="one" name="score">
+
+              <span class="custom-radio"></span>
+
+              1
+              <svg>
+                <use href="#star"></use>
+              </svg>
+            </label>
+          </li>
+
+        </ul>
+      </div>
+
+      <div class="filter__goal">
+        <h3 class="filter__liable">
+          За ціллю збору (грн.):
+        </h3>
+
+        <div class="filter__range">
+          <input id="range" type="range" min="5000" max="1000000" value="250000">
+          <output class="range-value" for="range"></output>
         </div>
+      </div>
     </div>
+  </div>
 </div>
 
-        <div class="become-volunteer">
-    <div class="container">
-        <div class="become-volunteer__content">
-            <h2 class="become-volunteer__title">
-                Стати волонтером з Kindred просто
-            </h2>
-
-            <div class="become-volunteer__info info">
-                <div class="info__steps">
-                    <div class="info__step">
-                        <svg>
-                            <use href="#reg"/>
-                        </svg>
-
-                        <p>Зареєструйся</p>
-                    </div>
-
-                    <div class="info__step">
-                        <svg>
-                            <use href="#form"/>
-                        </svg>
-
-                        <p>Заповни форму</p>
-                    </div>
-
-                    <div class="info__step">
-                        <svg>
-                            <use href="#done"/>
-                        </svg>
-
-                        <p>Очікуй підтвердження</p>
-                    </div>
-
-                    <div class="info__step">
-                        <svg>
-                            <use href="#publish"/>
-                        </svg>
-
-                        <p>Публікуй свої збори та звітуй</p>
-                    </div>
-                </div>
-
-                <div class="info__about about">
-                    <h3 class="about__title">Долучайся до спільноти, що змінює світ!</h3>
-
-                    <p class="about__text">
-                        Стань волонтером Kindred і допомагай тим, хто цього потребує. Це просто — зроби перший крок вже
-                        сьогодні!
-                        <br><br>
-                        Отримуй підтримку, обмінюйся досвідом з іншими волонтерами та втілюй свої добрі справи у життя
-                        разом із Kindred.
-                    </p>
-
-                    <div class="about__btns">
-                        <a href="" class="about__btn btn btn_orange">Зареєструватись</a>
-                        <a href="" class="about__btn btn btn_orange">Стати волонтером</a>
-                    </div>
-                </div>
-            </div>
-        </div>
+    <div class="prod-list">
+      <div class="container">
+        <div class="prod-list__content"></div>
+      </div>
     </div>
-</div>
+  </div>
 
-        <div class="hurts-of-kindred">
-    <div class="container">
-        <div class="hurts-of-kindred__content">
-            <h2 class="hurts-of-kindred__title">
-                Серця Kindred: Топ Волонтерів
-            </h2>
-
-            <p class="hurts-of-kindred__text">
-                Волонтери Kindred щодня роблять неймовірний внесок у спільну справу допомоги. Це люди, які не лише
-                допомагають, але й надихають, підтримують та змінюють світ на краще.
-            </p>
-
-            <div class="hurts-of-kindred__volunteer-list volunteer-list">
-
-            </div>
-        </div>
-    </div>
-</div>
-    </div>
-
-    <footer class="footer">
+  <footer class="footer">
   <div class="container">
     <div class="footer__content">
       <a href="" class="footer__logo">
