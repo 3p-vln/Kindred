@@ -54,7 +54,6 @@ export async function renderUsersCards(containerName: string) {
     topUsers.sort((a, b) => b.score - a.score);
 
     const topFiveUsers = topUsers.slice(0, 5);
-    console.log(topFiveUsers);
 
     topFiveUsers.forEach((user) => {
       renderUserCards(user, container);

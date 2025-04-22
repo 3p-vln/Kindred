@@ -70,8 +70,6 @@ export async function renderProdCardsActual(containerName: string) {
       }
     }
 
-    console.log(actualProd);
-
     container.innerHTML = '';
     actualProd.forEach((prod) => {
       renderCard(prod, container);
@@ -144,8 +142,6 @@ export async function renderProdCardsAll(containerName: string) {
         });
       }
     }
-
-    console.log(actualProd);
 
     container.innerHTML = '';
     actualProd.forEach((prod) => {
