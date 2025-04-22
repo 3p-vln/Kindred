@@ -3,7 +3,7 @@ import { collection, getDocs, doc, getDoc } from 'firebase/firestore';
 import { ActualProd } from '../../typings/interfaces.ts';
 import { db } from '../modules/firebace.ts';
 
-export async function renderProdCards(containerName: string) {
+export async function renderProdCardsActual(containerName: string) {
   const container = getElement(containerName);
   const actualProd: ActualProd[] = [];
 
@@ -18,22 +18,41 @@ export async function renderProdCards(containerName: string) {
 
       if (!data.status && count < 4) {
         let userInfo = {
-          name: 'Неизвестно',
+          name: 'Unknown',
           surname: '',
           score: 0,
         };
 
-        // Получаем документ пользователя по ID
         if (data.userId) {
           const userRef = doc(db, 'users', data.userId);
           const userSnap = await getDoc(userRef);
 
           if (userSnap.exists()) {
             const userData = userSnap.data();
+
+            const myProds: string[] = userData.myProds || [];
+            let succsesfulCollections = 0;
+
+            for (const prodId of myProds) {
+              const prodRef = doc(db, 'prods', prodId);
+              const prodSnap = await getDoc(prodRef);
+
+              if (prodSnap.exists()) {
+                const prodData = prodSnap.data();
+                if (prodData.status === true) {
+                  succsesfulCollections++;
+                }
+              }
+            }
+
+            const allCollections = myProds.length;
+            const succsesfulCoef = allCollections > 0 ? succsesfulCollections / allCollections : 0;
+            const score = Math.min(Math.ceil(succsesfulCoef * 5), 5);
+
             userInfo = {
               name: userData.name || '—',
               surname: userData.surname || '',
-              score: userData.score || 0,
+              score: score,
             };
           }
         }
@@ -62,10 +81,86 @@ export async function renderProdCards(containerName: string) {
   }
 }
 
+export async function renderProdCardsAll(containerName: string) {
+  const container = getElement(containerName);
+  const actualProd: ActualProd[] = [];
+
+  if (!container) return;
+
+  try {
+    const prodSnapshot = await getDocs(collection(db, 'prods'));
+
+    for (const docSnap of prodSnapshot.docs) {
+      const data = docSnap.data();
+
+      if (!data.status) {
+        let userInfo = {
+          name: 'Unknown',
+          surname: '',
+          score: 0,
+        };
+
+        if (data.userId) {
+          const userRef = doc(db, 'users', data.userId);
+          const userSnap = await getDoc(userRef);
+
+          if (userSnap.exists()) {
+            const userData = userSnap.data();
+
+            const myProds: string[] = userData.myProds || [];
+            let succsesfulCollections = 0;
+
+            for (const prodId of myProds) {
+              const prodRef = doc(db, 'prods', prodId);
+              const prodSnap = await getDoc(prodRef);
+
+              if (prodSnap.exists()) {
+                const prodData = prodSnap.data();
+                if (prodData.status === true) {
+                  succsesfulCollections++;
+                }
+              }
+            }
+
+            const allCollections = myProds.length;
+            const succsesfulCoef = allCollections > 0 ? succsesfulCollections / allCollections : 0;
+            const score = Math.min(Math.ceil(succsesfulCoef * 5), 5);
+
+            userInfo = {
+              name: userData.name || '—',
+              surname: userData.surname || '',
+              score: score,
+            };
+          }
+        }
+
+        actualProd.push({
+          id: docSnap.id,
+          img: data.img,
+          title: data.title,
+          goal: data.goal,
+          collected: data.collected,
+          userInfo: userInfo,
+        });
+      }
+    }
+
+    console.log(actualProd);
+
+    container.innerHTML = '';
+    actualProd.forEach((prod) => {
+      renderCard(prod, container);
+    });
+  } catch (error) {
+    console.error('Ошибка при получении документов:', error);
+  }
+}
+
 function renderCard(prod: ActualProd, container: HTMLElement) {
   const prodCard = renderElement('div', ['prod', `prod_${prod.id}`]);
 
   const card = renderElement<HTMLAnchorElement>('a', ['prod__card', 'card', `card_${prod.id}`]);
+  card.href = `prod.html?id=${prod.id}`;
 
   const cardImg = renderElement('div', 'card__img');
   cardImg.innerHTML = `
@@ -104,6 +199,7 @@ function renderCard(prod: ActualProd, container: HTMLElement) {
 
   const prodBtn = renderElement<HTMLAnchorElement>('a', ['prod__btn', 'btn', 'btn_orange']);
   prodBtn.innerText = 'Підтримати';
+  prodBtn.href = `prod.html?id=${prod.id}`;
 
   card.append(cardImg);
   card.append(cardTitle);
