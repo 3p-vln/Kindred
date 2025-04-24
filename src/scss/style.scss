@@ -54,8 +54,18 @@ body {
   border: 4px solid $scrolBg;
 }
 
+input {
+  &:-webkit-autofill,
+  textarea:-webkit-autofill,
+  select:-webkit-autofill {
+    -webkit-box-shadow: 0 0 0 1000px $headerFooterBg inset;
+    -webkit-text-fill-color: $fontColorBlack;
+  }
+}
+
 @import "./components/header";
 @import "./components/footer";
 @import "./components/prod-card";
 @import "./components/btn";
 @import "./components/preloader";
+@import "./components/radio";

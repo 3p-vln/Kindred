@@ -2,6 +2,7 @@ import { getDoc, doc, getDocs, collection } from 'firebase/firestore';
 import { db } from '../modules/firebace.ts';
 import { Prod } from '../../typings/interfaces.ts';
 import { getElement } from '../composables/use-call-dom.ts';
+import { openPopUp } from './sup-popup.ts';
 
 const urlParams = new URLSearchParams(window.location.search);
 const prodId = urlParams.get('id') || undefined;
@@ -75,6 +76,7 @@ export async function loadProdInfo() {
     if (!currProd) throw new Error();
 
     loadInfo(currProd);
+    openPopUp(currProd.link, currProd.collected);
   } catch (error) {
     console.error('Ошибка при получении документов:', error);
   }

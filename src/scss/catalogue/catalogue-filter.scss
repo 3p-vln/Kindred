@@ -68,54 +68,54 @@
         align-items: flex-end;
         gap: 7px;
 
-        .custom-radio {
-          width: 26px;
-          height: 26px;
-          border-radius: 50%;
-          border: 3px solid $progressBarBg;
-          position: relative;
-          left: -7px;
-          bottom: 8px;
-
-          @include media-breakpoint-down(sm){
-            width: 14px;
-            height: 14px;
-            border: 2px solid $progressBarBg;
-            bottom: 4px;
-          }
-
-          &::before {
-            content: "";
-            position: absolute;
-            width: 10px;
-            height: 10px;
-            border-radius: 50%;
-            background: $orange;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%) scale(0);
-            transition: transform 0.4s ease-in-out;
-
-            @include media-breakpoint-down(sm){
-              width: 5px;
-              height: 5px;
-            }
-          }
-        }
-
-        input[type='radio'] {
-          width: 0;
-          height: 0;
-          opacity: 0;
-
-          &:checked + .custom-radio::before {
-            transform: translate(-50%, -50%) scale(1);
-          }
-
-          &:checked + .custom-radio {
-            border-color: $orange;
-          }
-        }
+        //.custom-radio {
+        //  width: 26px;
+        //  height: 26px;
+        //  border-radius: 50%;
+        //  border: 3px solid $progressBarBg;
+        //  position: relative;
+        //  left: -7px;
+        //  bottom: 8px;
+        //
+        //  @include media-breakpoint-down(sm){
+        //    width: 14px;
+        //    height: 14px;
+        //    border: 2px solid $progressBarBg;
+        //    bottom: 4px;
+        //  }
+        //
+        //  &::before {
+        //    content: "";
+        //    position: absolute;
+        //    width: 10px;
+        //    height: 10px;
+        //    border-radius: 50%;
+        //    background: $orange;
+        //    top: 50%;
+        //    left: 50%;
+        //    transform: translate(-50%, -50%) scale(0);
+        //    transition: transform 0.4s ease-in-out;
+        //
+        //    @include media-breakpoint-down(sm){
+        //      width: 5px;
+        //      height: 5px;
+        //    }
+        //  }
+        //}
+        //
+        //input[type='radio'] {
+        //  width: 0;
+        //  height: 0;
+        //  opacity: 0;
+        //
+        //  &:checked + .custom-radio::before {
+        //    transform: translate(-50%, -50%) scale(1);
+        //  }
+        //
+        //  &:checked + .custom-radio {
+        //    border-color: $orange;
+        //  }
+        //}
       }
     }
 

@@ -104,10 +104,10 @@
       padding: 2px;
 
       &__progress {
-        width: 31%;
         height: 100%;
         background-color: $orange;
         border-radius: 10px;
+        max-width: 100%;
       }
     }
   }
