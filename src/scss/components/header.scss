@@ -13,6 +13,7 @@
     width: 100%;
     padding: 25px 0;
     gap: 20px;
+    position: relative;
 
     @include media-breakpoint-down(sm) {
       padding: 12px 0;
@@ -82,7 +83,7 @@
     }
 
     &_active {
-      right: 0;
+      right: -20px;
       opacity: 1;
 
       &::before {
@@ -102,6 +103,7 @@
     width: 36px;
     height: 43px;
     margin-right: 4px;
+    background-color: transparent;
 
     @include media-breakpoint-down(sm) {
       display: none;
