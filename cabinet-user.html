@@ -6,10 +6,13 @@
   <link rel="icon" type="image/svg+xml" href="/Kindred/logo.svg" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Особистий кабінет</title>
-  <script type="module" crossorigin src="/Kindred/assets/cabinet-user-BTJ3zbJc.js"></script>
-  <link rel="modulepreload" crossorigin href="/Kindred/assets/preloader-CpPLbTNp.js">
+  <script type="module" crossorigin src="/Kindred/assets/cabinet-user-CtWUSn_R.js"></script>
+  <link rel="modulepreload" crossorigin href="/Kindred/assets/preloader-BHEiGmpD.js">
+  <link rel="modulepreload" crossorigin href="/Kindred/assets/index-yFKSUj0c.js">
+  <link rel="modulepreload" crossorigin href="/Kindred/assets/just-validate.es-C73wyOde.js">
+  <link rel="modulepreload" crossorigin href="/Kindred/assets/add-reg-user-iC_e9Ps0.js">
   <link rel="stylesheet" crossorigin href="/Kindred/assets/preloader-j6eEgTci.css">
-  <link rel="stylesheet" crossorigin href="/Kindred/assets/cabinet-user-VjVCGf28.css">
+  <link rel="stylesheet" crossorigin href="/Kindred/assets/cabinet-user-l8vYjk4C.css">
 </head>
 
 <body>
@@ -67,6 +70,59 @@
     <button class="tabs__nav-btn" type="button" data-tab="#my-orders">Збори, в яких приймав участь</button>
     <button class="tabs__nav-btn tabs__nav-btn_log-out" type="button" data-tab="#log-out">Вихід</button>
   </div>
+</div>
+
+        <div class="account-info tabs__item" id="account-information">
+  <form id="acc-info">
+    <div class="account-info__form form">
+      <div class="form__item">
+        <label class="form__label" for="name">Ім’я</label>
+        <input class="form__input" type="text" id="name">
+      </div>
+
+      <div class="form__item">
+        <label class="form__label" for="surname">Прізвище</label>
+        <input class="form__input" type="text" id="surname">
+      </div>
+
+      <div class="form__item">
+        <label class="form__label" for="date">Дата народження</label>
+        <input class="form__input" type="text" id="date">
+      </div>
+
+      <div class="form__item">
+        <label class="form__label" for="city">Місто</label>
+        <input class="form__input" type="text" id="city">
+      </div>
+
+      <div class="form__item">
+        <label class="form__label" for="phone">Номер телефону</label>
+        <input class="form__input" type="text" id="phone">
+      </div>
+
+      <div class="form__item">
+        <label class="form__label" for="email">E-mail</label>
+        <input class="form__input" type="email" id="email">
+      </div>
+
+      <div class="form__item">
+        <label class="form__label" for="about">Про себе</label>
+        <textarea class="form__textarea" id="about"
+                  placeholder="Роскажіть коротко про себе, свій досвід у волонтерстві та чим саме Ви можете бути корисним"></textarea>
+      </div>
+
+      <div class="form__item">
+        <label class="form__label" for="photo">Змінити фото</label>
+        <input class="form__input" type="file" id="photo">
+      </div>
+
+      <button class="form__btn btn btn_orange" type="submit">Зберегти</button>
+    </div>
+  </form>
+</div>
+
+        <div class="my-orders tabs__item" id="my-orders">
+  <div class="my-orders__content"></div>
 </div>
       </div>
     </div>
