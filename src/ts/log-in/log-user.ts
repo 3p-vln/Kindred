@@ -36,9 +36,9 @@ export async function logInUser() {
     document.cookie = `UID = ${user.user.uid}`;
     document.cookie = `Role = ${currentUser?.role}`;
     await addUserToLocalStorage(user.user.uid);
-    if (currentUser?.role == 'admin') window.location.href = '/cabinet-admin.html';
-    else if (currentUser?.role == 'volunteer') window.location.href = '/cabinet-volunteer.html';
-    else window.location.href = '/cabinet-user.html';
+    if (currentUser?.role == 'admin') window.location.href = '/Kindred/cabinet-admin.html';
+    else if (currentUser?.role == 'volunteer') window.location.href = '/Kindred/cabinet-volunteer.html';
+    else window.location.href = '/Kindred/cabinet-user.html';
   } catch (error) {
     errorMsg.innerText = 'Невірний логін або пароль';
     errorMsg.style.opacity = '1';

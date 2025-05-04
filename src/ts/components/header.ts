@@ -5,7 +5,7 @@ import Cookies from 'js-cookie';
 const burgerBtn = getElement('.burger__btn');
 const menu = getElement('.menu');
 const menuList = getElement('.menu__list');
-const token = Cookies.get('UID');
+const token = JSON.parse(JSON.stringify(localStorage.getItem('user'))) || false;
 
 export function burgerMenu() {
   burgerToggle();

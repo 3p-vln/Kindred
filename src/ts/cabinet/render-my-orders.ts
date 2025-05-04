@@ -14,6 +14,11 @@ export async function renderMyOrders() {
 
   if (!container) return;
 
+  if(!userProd) {
+    container.innerHTML = 'Ви не приймали участі у зборах.';
+    return;
+  }
+
   for (let i = 0; i < userProd.length; i++) {
     const docSnap = await getDoc(doc(db, 'prods', userProd[i]));
     const data = docSnap.data();

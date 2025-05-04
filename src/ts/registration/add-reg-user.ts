@@ -52,7 +52,7 @@ export async function registerUser() {
     document.cookie = `UID = ${user.user.uid}`;
     document.cookie = `Role = customer`;
     await addUserToLocalStorage(user.user.uid);
-    window.location.href = '/cabinet-user.html';
+    window.location.href = '/Kindred/cabinet-user.html';
   } catch (error) {
     showDbError(error);
   }
