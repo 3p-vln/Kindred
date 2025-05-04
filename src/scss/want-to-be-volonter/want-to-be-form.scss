@@ -15,7 +15,7 @@
   .form {
     display: grid;
     grid-template-columns: 1fr 1fr;
-    gap: 50px 35px;
+    gap: 60px 35px;
     max-width: 715px;
     width: 100%;
     margin: 0 auto;
@@ -27,12 +27,26 @@
     &__item {
       display: flex;
       flex-direction: column;
+      position: relative;
+
+      .just-validate-error-label{
+        position: absolute;
+        top: 85px;
+        font-size: clamp(14px, 2.5vw, 14px);
+      }
 
       &:nth-child(7), &:nth-child(8) {
         grid-column: 1/3;
 
         @include media-breakpoint-down(sm) {
           grid-column: 1/1;
+        }
+      }
+
+      &:nth-child(7) {
+        .just-validate-error-label{
+          top: auto;
+          bottom: -25px;
         }
       }
     }
@@ -42,6 +56,16 @@
 
       @include media-breakpoint-down(sm) {
         grid-column: 1/1;
+      }
+    }
+
+    &__agree{
+      position: relative;
+
+      .just-validate-error-label{
+        position: absolute;
+        bottom: -25px;
+        font-size: clamp(14px, 2.5vw, 14px);
       }
     }
 

@@ -1,4 +1,4 @@
 declare module 'just-validate' {
-  const JustValidate: any;
+  import JustValidate from 'just-validate/dist/just-validate.es.js';
   export default JustValidate;
 }

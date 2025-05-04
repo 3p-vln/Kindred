@@ -4,7 +4,7 @@ import { getElement } from '../composables/use-call-dom.ts';
 export function authPopUp() {
   const popup = getElement('#authPopup');
   const openButton = getElement('.header__account');
-  const token = Cookies.get('UID');
+  const token = JSON.parse(JSON.stringify(localStorage.getItem('user'))) || false;
   if (!(popup instanceof HTMLDialogElement)) return;
   const closeButton = getElement('.auth-pop-up__close', popup);
   const container = getElement('.auth-pop-up__container', popup);
@@ -12,7 +12,7 @@ export function authPopUp() {
   if (openButton) {
     openButton.addEventListener('click', () => {
       if (token) {
-        window.location.href = `${cabinetLink()}`;
+        window.location.href = `/Kindred/${cabinetLink()}`;
         return;
       }
 
@@ -44,10 +44,10 @@ function cabinetLink(): string {
 
   switch (token) {
     case 'admin':
-      return '/cabinet-admin.html';
+      return 'cabinet-admin.html';
     case 'volunteer':
-      return '/cabinet-volunteer.html';
+      return 'cabinet-volunteer.html';
     default:
-      return '/cabinet-user.html';
+      return 'cabinet-user.html';
   }
 }

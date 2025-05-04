@@ -1,0 +1,36 @@
+<!doctype html>
+<html lang="en">
+
+<load
+="./src/html/components/head.html" title="Особистий кабінет" styles="cabinet-user" />
+<body>
+
+<div class="wrapper">
+  <load
+  ="./src/html/components/header.html" />
+
+  <div class="page">
+    <div class="container">
+      <div class="page__content">
+        <load
+        ="./src/html/cabinet/user/user-tab.html" />
+
+        <load
+        ="./src/html/cabinet/acc-info.html" />
+
+        <load
+        ="./src/html/cabinet/my-orders.html" />
+      </div>
+    </div>
+  </div>
+
+  <load
+  ="./src/html/components/preloader.html" />
+
+  <load
+  ="./src/html/components/footer.html" />
+</div>
+
+<script src="./src/ts/pages/cabinet-user.ts" type="module"></script>
+</body>
+</html>

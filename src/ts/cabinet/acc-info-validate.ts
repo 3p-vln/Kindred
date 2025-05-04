@@ -1,10 +1,10 @@
 import { getElement } from '../composables/use-call-dom.ts';
-import JustValidate from 'just-validate';
 import IMask, { MaskedDynamic, MaskedPattern } from 'imask';
-import { applyForm } from './send-form.ts';
+import JustValidate from 'just-validate';
+import { changeInfo } from './acc-info.ts';
 
-export function validateForm() {
-  const form = getElement<HTMLFormElement>('#want-to-be');
+export function validateAccInfoForm() {
+  const form = getElement<HTMLFormElement>('#acc-info');
   if (!form) return;
 
   applyMask();
@@ -154,22 +154,23 @@ export function validateForm() {
         errorMessage: 'Напишіть трохи більше інформації',
       },
     ])
-    .addField('#agree', [
+    .addField('#photo', [
       {
-        rule: 'required',
-        errorMessage: `Дайте згоду на обробку інформації`,
+        rule: 'minFilesCount',
+        value: 1,
+        errorMessage: 'Будь ласка, додайте файл',
       },
     ]);
 
   validator.onSuccess(async () => {
     console.log('success');
-    applyForm();
+    await changeInfo();
   });
 }
 
 function applyMask() {
-  const phoneInput = getElement<HTMLInputElement>('#phone')
-  if(!phoneInput) return;
+  const phoneInput = getElement<HTMLInputElement>('#phone');
+  if (!phoneInput) return;
 
   type MaskWithStartsWith = { mask: string; startsWith: string };
 

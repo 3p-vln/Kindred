@@ -1,0 +1,51 @@
+.my-orders{
+  &__content {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 20px 32px;
+    max-width: 1135px;
+    margin-left: auto;
+    margin-bottom: 60px;
+
+    @include media-breakpoint-down(lg) {
+      grid-template-columns: 1fr 1fr;
+    }
+
+    @include media-breakpoint-down(sm) {
+      max-width: calc(100vw - 40px);
+      margin-left: 0;
+    }
+
+    @include media-breakpoint-down(xs) {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  .prod {
+    display: flex;
+
+    .card {
+      &__img {
+        height: auto;
+
+        @include media-breakpoint-down(sm) {
+          aspect-ratio: 1.3/1;
+        }
+
+        img {
+          height: 100%;
+          width: 100%;
+          object-fit: contain;
+        }
+      }
+
+      &__collected{
+        margin-bottom: auto;
+      }
+
+      &__user{
+        gap: 10px;
+      }
+    }
+  }
+}

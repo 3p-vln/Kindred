@@ -17,6 +17,18 @@ const pages = [
     name: 'want-to-be-volonter',
     path: resolve(__dirname, 'want-to-be-volonter.html'),
   },
+  {
+    name: 'log-in',
+    path: resolve(__dirname, 'log-in.html'),
+  },
+  {
+    name: 'registration',
+    path: resolve(__dirname, 'registration.html'),
+  },
+  {
+    name: 'cabinet-user',
+    path: resolve(__dirname, 'cabinet-user.html'),
+  },
 ];
 
 export default pages;

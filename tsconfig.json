@@ -19,7 +19,7 @@
     "noUnusedParameters": true,
     "noFallthroughCasesInSwitch": true,
 
-    "typeRoots": ["./node_modules/@types", "./src/typings"]
+    "typeRoots": ["node_modules/*", "src/types/*"]
   },
   "include": ["src"]
 }
