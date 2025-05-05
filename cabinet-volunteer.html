@@ -6,14 +6,14 @@
   <link rel="icon" type="image/svg+xml" href="/Kindred/logo.svg" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Особистий кабінет</title>
-  <script type="module" crossorigin src="/Kindred/assets/cabinet-volunteer-Dhf648N7.js"></script>
-  <link rel="modulepreload" crossorigin href="/Kindred/assets/preloader-DxjRRw3U.js">
+  <script type="module" crossorigin src="/Kindred/assets/cabinet-volunteer-BCR8N0Oy.js"></script>
+  <link rel="modulepreload" crossorigin href="/Kindred/assets/preloader-gurskksm.js">
   <link rel="modulepreload" crossorigin href="/Kindred/assets/index-yFKSUj0c.js">
   <link rel="modulepreload" crossorigin href="/Kindred/assets/just-validate.es-C73wyOde.js">
-  <link rel="modulepreload" crossorigin href="/Kindred/assets/add-reg-user-B_Uirrh9.js">
-  <link rel="modulepreload" crossorigin href="/Kindred/assets/redirect-Dnk3lAFi.js">
-  <link rel="stylesheet" crossorigin href="/Kindred/assets/preloader-j6eEgTci.css">
-  <link rel="stylesheet" crossorigin href="/Kindred/assets/cabinet-volunteer-BdGF1liN.css">
+  <link rel="modulepreload" crossorigin href="/Kindred/assets/add-reg-user-CFr-7_gn.js">
+  <link rel="modulepreload" crossorigin href="/Kindred/assets/redirect-BUnxv_rh.js">
+  <link rel="stylesheet" crossorigin href="/Kindred/assets/preloader-CkCWR56b.css">
+  <link rel="stylesheet" crossorigin href="/Kindred/assets/cabinet-volunteer-DqMmInJ2.css">
 </head>
 
 <body>
@@ -70,8 +70,8 @@
     <button class="tabs__nav-btn" type="button" data-tab="#account-information">Особиста інформація</button>
     <button class="tabs__nav-btn" type="button" data-tab="#my-orders">Збори, в яких приймав участь</button>
     <button class="tabs__nav-btn" type="button" data-tab="#create-order">Створити збір</button>
-    <button class="tabs__nav-btn" type="button" data-tab="#change-orders">Редагувати існуючі збори</button>
     <button class="tabs__nav-btn" type="button" data-tab="#create-new">Створити новину</button>
+    <button class="tabs__nav-btn" type="button" data-tab="#all-orders">Мої збори</button>
     <button class="tabs__nav-btn tabs__nav-btn_log-out" type="button" data-tab="#log-out">Вихід</button>
   </div>
 </div>
@@ -117,7 +117,7 @@
 
       <div class="form__item">
         <label class="form__label" for="photo">Змінити фото</label>
-        <input class="form__input" type="file" id="photo">
+        <input class="form__input" type="file" id="photo" accept="image/*">
       </div>
 
       <button class="form__btn btn btn_orange" type="submit">Зберегти</button>
@@ -154,7 +154,30 @@
 
       <div class="form__item">
         <label class="form__label" for="img">Зображення для збору</label>
-        <input class="form__input" type="file" id="img">
+        <input class="form__input" type="file" id="img" accept="image/*">
+      </div>
+
+      <button class="form__btn btn btn_orange" type="submit">Створити</button>
+    </div>
+  </form>
+</div>
+
+        <div class="create-new tabs__item" id="create-new">
+  <form id="create-new-form">
+    <div class="create-order__form form">
+      <div class="form__item">
+        <label class="form__label" for="title-new">Назва новини або звіту</label>
+        <input class="form__input" type="text" id="title-new">
+      </div>
+
+      <div class="form__item">
+        <label class="form__label" for="new-text">Текст новини</label>
+        <textarea class="form__textarea" id="new-text"></textarea>
+      </div>
+
+      <div class="form__item">
+        <label class="form__label" for="new-img">Зображення для новини</label>
+        <input class="form__input" type="file" id="new-img" accept="image/*">
       </div>
 
       <button class="form__btn btn btn_orange" type="submit">Створити</button>
@@ -303,6 +326,10 @@
         <path d="M21 36.5L33.8298 54.1962C34.6428 55.3177 36.3221 55.293 37.1019 54.1482L59 22" stroke="#F0F0F0" stroke-width="7" stroke-linecap="round"/>
     </symbol>
 
+    <symbol id="pencil" viewBox="0 0 40 40" fill="none" >
+        <path d="M30.4173 3.33333L36.6673 9.58333L22.084 24.1667H15.834V17.9167L30.4173 3.33333Z" fill="#D9D9D9" stroke="#D9D9D9" stroke-width="0.00666667"/>
+        <path d="M5.41699 5.41666V34.5833H34.5837V22.0833H30.417V30.4167H9.58366V9.58332H17.917V5.41666H5.41699Z" fill="#D9D9D9" stroke="#D9D9D9" stroke-width="0.00666667"/>
+    </symbol>
 </svg>
 </footer>
 
