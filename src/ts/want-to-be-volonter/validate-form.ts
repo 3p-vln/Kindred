@@ -2,6 +2,7 @@ import { getElement } from '../composables/use-call-dom.ts';
 import JustValidate from 'just-validate';
 import IMask, { MaskedDynamic, MaskedPattern } from 'imask';
 import { applyForm } from './send-form.ts';
+import { done } from './done-pop-up.ts';
 
 export function validateForm() {
   const form = getElement<HTMLFormElement>('#want-to-be');
@@ -162,8 +163,8 @@ export function validateForm() {
     ]);
 
   validator.onSuccess(async () => {
-    console.log('success');
-    applyForm();
+    await applyForm();
+    done();
   });
 }
 

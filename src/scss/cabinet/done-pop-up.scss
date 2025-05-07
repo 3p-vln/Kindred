@@ -1,0 +1,23 @@
+.done-pop-up {
+  display: flex;
+  position: fixed;
+  top: 145px;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background: green;
+  padding: 20px 60px 9px;
+  border-radius: 20px;
+  z-index: 100;
+  color: white;
+  font-weight: 700;
+  opacity: 1;
+  text-align: center;
+  font-size: clamp(12px, 2.5vw, 20px);
+  transition: opacity 0.5s ease-in-out;
+  max-width: max-content;
+
+  @include media-breakpoint-down(sm){
+    top: 175px;
+    padding: 20px 30px 9px;
+  }
+}

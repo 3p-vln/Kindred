@@ -29,6 +29,14 @@ const pages = [
     name: 'cabinet-user',
     path: resolve(__dirname, 'cabinet-user.html'),
   },
+  {
+    name: 'cabinet-volunteer',
+    path: resolve(__dirname, 'cabinet-volunteer.html'),
+  },
+  {
+    name: 'cabinet-admin',
+    path: resolve(__dirname, 'cabinet-admin.html'),
+  },
 ];
 
 export default pages;

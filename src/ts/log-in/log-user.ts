@@ -32,14 +32,22 @@ export async function logInUser() {
     const userUid = user.user.uid;
     const currentUser = allUsers.find((item) => item.uid === userUid);
 
+    if(!currentUser) throw new Error('del');
+
     errorMsg.style.opacity = '0';
-    document.cookie = `UID = ${user.user.uid}`;
-    document.cookie = `Role = ${currentUser?.role}`;
+    document.cookie = `UID = ${user.user.uid}; max-age=259200; path=/`;
+    document.cookie = `Role = ${currentUser?.role}; max-age=259200; path=/`;
     await addUserToLocalStorage(user.user.uid);
     if (currentUser?.role == 'admin') window.location.href = '/Kindred/cabinet-admin.html';
     else if (currentUser?.role == 'volunteer') window.location.href = '/Kindred/cabinet-volunteer.html';
     else window.location.href = '/Kindred/cabinet-user.html';
   } catch (error) {
+    if(error instanceof Error && error.message.includes('del')) {
+      errorMsg.innerText = 'Ваш акаунт було видалено без можливості відновлення';
+      errorMsg.style.opacity = '1';
+
+      return;
+    }
     errorMsg.innerText = 'Невірний логін або пароль';
     errorMsg.style.opacity = '1';
   }

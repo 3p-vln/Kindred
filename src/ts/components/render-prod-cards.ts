@@ -1,155 +1,76 @@
 import { getElement, renderElement } from '../composables/use-call-dom.ts';
-import { collection, getDocs, doc, getDoc } from 'firebase/firestore';
-import { ActualProd } from '../../typings/interfaces.ts';
-import { db } from '../modules/firebace.ts';
+import { ActualProd, Product, User } from '../../typings/interfaces.ts';
 
-export async function renderProdCardsActual(containerName: string) {
+export async function renderProdCardsActual(containerName: string, allProds: Product[], allUsers: User[]) {
   const container = getElement(containerName);
-  const actualProd: ActualProd[] = [];
-
   if (!container) return;
 
-  try {
-    const prodSnapshot = await getDocs(collection(db, 'prods'));
-    let count = 0;
+  const usersMap = new Map(allUsers.map((u) => [u.id, u]));
 
-    for (const docSnap of prodSnapshot.docs) {
-      const data = docSnap.data();
-
-      if (!data.status && count < 4) {
-        let userInfo = {
-          name: 'Unknown',
-          surname: '',
-          score: 0,
-        };
-
-        if (data.userId) {
-          const userRef = doc(db, 'users', data.userId);
-          const userSnap = await getDoc(userRef);
-
-          if (userSnap.exists()) {
-            const userData = userSnap.data();
-
-            const myProds: string[] = userData.myProds || [];
-            let succsesfulCollections = 0;
-
-            for (const prodId of myProds) {
-              const prodRef = doc(db, 'prods', prodId);
-              const prodSnap = await getDoc(prodRef);
-
-              if (prodSnap.exists()) {
-                const prodData = prodSnap.data();
-                if (prodData.status === true) {
-                  succsesfulCollections++;
-                }
-              }
-            }
-
-            const allCollections = myProds.length;
-            const succsesfulCoef = allCollections > 0 ? succsesfulCollections / allCollections : 0;
-            const score = Math.min(Math.ceil(succsesfulCoef * 5), 5);
-
-            userInfo = {
-              name: userData.name || '—',
-              surname: userData.surname || '',
-              score: score,
-            };
-          }
-        }
-
-        actualProd.push({
-          id: docSnap.id,
-          img: data.img,
-          title: data.title,
-          goal: data.goal,
-          collected: data.collected,
-          userInfo: userInfo,
-        });
-
-        count += 1;
-      }
-    }
-
-    container.innerHTML = '';
-    actualProd.forEach((prod) => {
-      renderCard(prod, container);
+  const actualProd: ActualProd[] = allProds
+    .filter((prod) => !prod.status && prod.date)
+    .sort((a, b) => parseDate(b.date).getTime() - parseDate(a.date).getTime())
+    .slice(0, 4)
+    .map((prod) => {
+      const user = usersMap.get(prod.userId);
+      return {
+        id: prod.id,
+        img: prod.img,
+        title: prod.title,
+        goal: prod.goal,
+        collected: prod.collected,
+        userInfo: {
+          id: user?.id || '',
+          name: `${user?.name || '-'}.`,
+          surname: user?.surname || '',
+          score: user?.score || 0,
+        },
+        date: prod.date,
+      };
     });
-  } catch (error) {
-    console.error('Ошибка при получении документов:', error);
-  }
+
+  container.innerHTML = '';
+  actualProd.forEach((prod) => {
+    renderCard(prod, container);
+  });
 }
 
-export async function renderProdCardsAll(containerName: string) {
+function parseDate(dateStr: string): Date {
+  const [day, month, year] = dateStr.split('.').map(Number);
+  return new Date(year, month - 1, day); // месяц от 0 до 11
+}
+
+export async function renderProdCardsAll(containerName: string, allProds: Product[], allUsers: User[]) {
   const container = getElement(containerName);
   const actualProd: ActualProd[] = [];
 
-  if (!container) return;
-
-  try {
-    const prodSnapshot = await getDocs(collection(db, 'prods'));
-
-    for (const docSnap of prodSnapshot.docs) {
-      const data = docSnap.data();
-
-      if (!data.status) {
-        let userInfo = {
-          name: 'Unknown',
-          surname: '',
-          score: 0,
-        };
-
-        if (data.userId) {
-          const userRef = doc(db, 'users', data.userId);
-          const userSnap = await getDoc(userRef);
-
-          if (userSnap.exists()) {
-            const userData = userSnap.data();
-
-            const myProds: string[] = userData.myProds || [];
-            let succsesfulCollections = 0;
-
-            for (const prodId of myProds) {
-              const prodRef = doc(db, 'prods', prodId);
-              const prodSnap = await getDoc(prodRef);
-
-              if (prodSnap.exists()) {
-                const prodData = prodSnap.data();
-                if (prodData.status === true) {
-                  succsesfulCollections++;
-                }
-              }
-            }
-
-            const allCollections = myProds.length;
-            const succsesfulCoef = allCollections > 0 ? succsesfulCollections / allCollections : 0;
-            const score = Math.min(Math.ceil(succsesfulCoef * 5), 5);
-
-            userInfo = {
-              name: userData.name || '—',
-              surname: userData.surname || '',
-              score: score,
-            };
-          }
-        }
-
+  allProds.forEach((prod) => {
+    allUsers.forEach((user) => {
+      if (prod.userId == user.id && !prod.status) {
         actualProd.push({
-          id: docSnap.id,
-          img: data.img,
-          title: data.title,
-          goal: data.goal,
-          collected: data.collected,
-          userInfo: userInfo,
+          id: prod.id,
+          img: prod.img,
+          title: prod.title,
+          goal: prod.goal,
+          collected: prod.collected,
+          userInfo: {
+            id: user.id,
+            name: `${user.name || '-'}.`,
+            surname: user.surname,
+            score: user.score,
+          },
+          date: prod.date,
         });
       }
-    }
-
-    container.innerHTML = '';
-    actualProd.forEach((prod) => {
-      renderCard(prod, container);
     });
-  } catch (error) {
-    console.error('Ошибка при получении документов:', error);
-  }
+  });
+
+  if (!container) return;
+
+  container.innerHTML = '';
+  actualProd.forEach((prod) => {
+    renderCard(prod, container);
+  });
 }
 
 function renderCard(prod: ActualProd, container: HTMLElement) {
@@ -162,6 +83,8 @@ function renderCard(prod: ActualProd, container: HTMLElement) {
   cardImg.innerHTML = `
     <img src="${prod.img}" alt="${prod.title}"/>
   `;
+
+  const cardInfo = renderElement('div', 'card__info');
 
   const cardTitle = renderElement('div', 'card__title');
   cardTitle.innerText = prod.title;
@@ -193,16 +116,18 @@ function renderCard(prod: ActualProd, container: HTMLElement) {
   cardUser.appendChild(cardUserFIO);
   cardUser.appendChild(cardUserScore);
 
+  cardInfo.append(cardTitle);
+  cardInfo.append(cardGoal);
+  cardInfo.append(cardCollected);
+  cardInfo.append(progressBar);
+  cardInfo.append(cardUser);
+
   const prodBtn = renderElement<HTMLAnchorElement>('a', ['prod__btn', 'btn', 'btn_orange']);
   prodBtn.innerText = 'Підтримати';
   prodBtn.href = `prod.html?id=${prod.id}`;
 
   card.append(cardImg);
-  card.append(cardTitle);
-  card.append(cardGoal);
-  card.append(cardCollected);
-  card.append(progressBar);
-  card.append(cardUser);
+  card.append(cardInfo);
 
   prodCard.appendChild(card);
   prodCard.appendChild(prodBtn);

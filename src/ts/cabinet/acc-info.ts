@@ -1,5 +1,5 @@
 import { getElement } from '../composables/use-call-dom.ts';
-import { doc, updateDoc } from 'firebase/firestore';
+import { doc, getDoc, updateDoc } from 'firebase/firestore';
 import { db, storage } from '../modules/firebace.ts';
 import { ref, uploadBytes, getDownloadURL } from "firebase/storage";
 import { addUserToLocalStorage } from '../registration/add-reg-user.ts';
@@ -33,7 +33,6 @@ export async function changeInfo() {
     const docRef = doc(db, 'users', storedUserInfo.id);
 
     const file = photoInput?.files?.[0];
-    if(!file) return;
 
     const url = await uploadImage(file);
 
@@ -51,13 +50,18 @@ export async function changeInfo() {
     if(!token) return;
     await addUserToLocalStorage(token);
   } catch (error){
-    console.log(error);
+    console.error(error);
   }
 }
 
-async function uploadImage(file: File): Promise<string> {
-  if (!file) throw new Error("Нет файла");
+async function uploadImage(file: File | null = null): Promise<string> {
+  if (!file) {
+    const userData = await getDoc(doc(db, 'users', storedUserInfo.id));
+    if (!userData) throw new Error('Нет файла');
+    if(!userData.data()?.img) return 'https://firebasestorage.googleapis.com/v0/b/kindred-4b120.firebasestorage.app/o/users%2Funnamed.jpg?alt=media&token=3a5e0dbc-a6db-46dd-bced-cb0819533b37';
 
+    return userData.data()?.img;
+  }
   const storageRef = ref(storage, `users/${file.name}`);
   await uploadBytes(storageRef, file);
   const downloadURL = await getDownloadURL(storageRef);

@@ -9,12 +9,10 @@ export async function logOut() {
     try {
       const auth = getAuth();
       signOut(auth).then(() => {
-        window.location.href = '/Kindred/index.html';
-        console.log('Пользователь вышел из системы');
         Cookies.remove('UID', { path: '/' });
         Cookies.remove('Role', { path: '/' });
         localStorage.removeItem('user');
-        console.log(document.cookie)
+        window.location.href = '/Kindred/index.html';
       });
     } catch (error) {
       console.error(error);

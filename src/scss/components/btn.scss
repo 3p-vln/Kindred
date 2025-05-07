@@ -20,4 +20,16 @@
   &_orange {
     background-color: $orange;
   }
+
+  &_yellow{
+    background-color: $saveBtnBg;
+  }
+
+  &_red{
+    background-color: $deliteBtnBg;
+  }
+
+  &_green{
+    background-color: $closeBtnBg;
+  }
 }

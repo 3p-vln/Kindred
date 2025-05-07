@@ -4,14 +4,15 @@ import { getElement } from '../composables/use-call-dom.ts';
 export function authPopUp() {
   const popup = getElement('#authPopup');
   const openButton = getElement('.header__account');
-  const token = JSON.parse(JSON.stringify(localStorage.getItem('user'))) || false;
+  const user = JSON.parse(JSON.stringify(localStorage.getItem('user'))) || false;
+  const token = Cookies.get('UID');
   if (!(popup instanceof HTMLDialogElement)) return;
   const closeButton = getElement('.auth-pop-up__close', popup);
   const container = getElement('.auth-pop-up__container', popup);
 
   if (openButton) {
     openButton.addEventListener('click', () => {
-      if (token) {
+      if (user && token) {
         window.location.href = `/Kindred/${cabinetLink()}`;
         return;
       }

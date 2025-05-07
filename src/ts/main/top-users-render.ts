@@ -1,66 +1,40 @@
 import { getElement, renderElement } from '../composables/use-call-dom.ts';
-import { collection, getDocs, doc, getDoc } from 'firebase/firestore';
-import { TopUser } from '../../typings/interfaces.ts';
-import { db } from '../modules/firebace.ts';
+import { Product, TopUser, User } from '../../typings/interfaces.ts';
 
-export async function renderUsersCards(containerName: string) {
+export async function renderUsersCards(containerName: string, allUsers: User[], allProd: Product[]) {
   const container = getElement(containerName);
   const topUsers: TopUser[] = [];
 
   if (!container) return;
 
-  try {
-    const usersSnapshot = await getDocs(collection(db, 'users'));
+  allUsers.forEach((user) => {
+    const userTop = {
+      id: user.id,
+      img: user.img,
+      name: user.name,
+      surname: user.surname,
+      allCollections: user.myProds.length,
+      succsesfulCollections: 0,
+      dateOfRegister: user.dateOfRegister,
+      score: user.score,
+    };
 
-    const allCoefs: number[] = [];
-
-    for (const userDoc of usersSnapshot.docs) {
-      const userData = userDoc.data();
-      const myProds: string[] = userData.myProds || [];
-
-      let succsesfulCollections = 0;
-
-      for (const prodId of myProds) {
-        const prodRef = doc(db, 'prods', prodId);
-        const prodSnap = await getDoc(prodRef);
-
-        if (prodSnap.exists()) {
-          const prodData = prodSnap.data();
-          if (prodData.status === true) {
-            succsesfulCollections++;
-          }
-        }
-      }
-
-      const allCollections = myProds.length;
-      const succsesfulCoef = allCollections > 0 ? succsesfulCollections / allCollections : 0;
-
-      allCoefs.push(succsesfulCoef);
-
-      const topUser: TopUser = {
-        id: userDoc.id,
-        img: userData.img,
-        name: userData.name || '',
-        surname: userData.surname || '',
-        allCollections,
-        succsesfulCollections,
-        dateOfRegister: userData.dateOfRegister || '',
-        score: Math.min(Math.ceil(succsesfulCoef * 5), 5),
-      };
-
-      topUsers.push(topUser);
-    }
-
-    topUsers.sort((a, b) => b.score - a.score);
-
-    const topFiveUsers = topUsers.slice(0, 5);
-
-    topFiveUsers.forEach((user) => {
-      renderUserCards(user, container);
+    user.myProds.forEach((prod) => {
+      allProd.forEach((product) => {
+        if(product.id === prod && product.status) userTop.succsesfulCollections++;
+      })
     });
-  } catch (error) {
-    console.error('Ошибка при получении пользователей или сборов:', error);
-  }
+
+    topUsers.push(userTop);
+  });
+
+  topUsers.sort((a, b) => b.score - a.score);
+
+  const topFiveUsers = topUsers.slice(0, 5);
+
+  topFiveUsers.forEach((user) => {
+    renderUserCards(user, container);
+  });
 }
 
 function renderUserCards(user: TopUser, container: HTMLElement) {

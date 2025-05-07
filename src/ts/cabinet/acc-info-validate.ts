@@ -2,6 +2,7 @@ import { getElement } from '../composables/use-call-dom.ts';
 import IMask, { MaskedDynamic, MaskedPattern } from 'imask';
 import JustValidate from 'just-validate';
 import { changeInfo } from './acc-info.ts';
+import { done } from './done-pop-up.ts';
 
 export function validateAccInfoForm() {
   const form = getElement<HTMLFormElement>('#acc-info');
@@ -153,18 +154,11 @@ export function validateAccInfoForm() {
         value: 20,
         errorMessage: 'Напишіть трохи більше інформації',
       },
-    ])
-    .addField('#photo', [
-      {
-        rule: 'minFilesCount',
-        value: 1,
-        errorMessage: 'Будь ласка, додайте файл',
-      },
     ]);
 
   validator.onSuccess(async () => {
-    console.log('success');
     await changeInfo();
+    done('');
   });
 }
 

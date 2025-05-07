@@ -1,0 +1,115 @@
+.volonteer-application {
+  margin-bottom: 60px;
+
+  &__content {
+    display: grid;
+    gap: 30px;
+    width: 100%;
+
+    @include media-breakpoint-down(sm) {
+      max-width: calc(100vw - 40px);
+    }
+  }
+
+  .application {
+    display: grid;
+    grid-template-columns: 140px 1fr;
+    padding: 20px;
+    border-radius: 20px;
+    background-color: $headerFooterBg;
+    gap: 20px;
+    position: relative;
+
+    @include media-breakpoint-down(md) {
+      grid-template-columns: 70px 1fr;
+      padding: 40px 20px 20px
+    }
+
+    @include media-breakpoint-down(sm) {
+      grid-template-columns: 1fr;
+    }
+
+    &__img {
+      width: 100%;
+      height: auto;
+      aspect-ratio: 1/1;
+      border-radius: 50%;
+      overflow: hidden;
+
+      @include media-breakpoint-down(sm) {
+        border-radius: 5%;
+      }
+
+      img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+      }
+    }
+
+    &__name {
+      font-weight: 700;
+      font-size: clamp(18px, 2.5vw, 26px);
+      margin-bottom: 20px;
+      padding-right: 240px;
+
+      @include media-breakpoint-down(sm) {
+        padding-right: 0;
+        text-align: center;
+      }
+    }
+
+    &__date-of-reg {
+      position: absolute;
+      top: 20px;
+      right: 20px;
+      font-size: clamp(14px, 2.5vw, 20px);
+
+      @include media-breakpoint-down(sm) {
+        top: 15px;
+        right: 15px;
+      }
+    }
+
+    &__date-birth, &__city, &__phone, &__email, &__about, &__time {
+      font-size: clamp(14px, 2.5vw, 20px);
+      margin-left: 20px;
+      margin-bottom: 15px;
+
+      @include media-breakpoint-down(sm) {
+        margin-left: 0;
+        margin-bottom: 10px;
+      }
+
+      span {
+        font-weight: 700;
+      }
+    }
+
+    &__btns {
+      padding-left: 20px;
+      display: flex;
+      gap: 20px;
+      width: 100%;
+      background: transparent;
+
+      @include media-breakpoint-down(md) {
+        flex-direction: column;
+        gap: 10px;
+      }
+
+      @include media-breakpoint-down(sm) {
+        padding-left: 0;
+      }
+    }
+
+    &__btn {
+      height: 70px;
+      font-size: clamp(16px, 2.5vw, 18px);
+
+      @include media-breakpoint-down(sm) {
+        height: 50px;
+      }
+    }
+  }
+}

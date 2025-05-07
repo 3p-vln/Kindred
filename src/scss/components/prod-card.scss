@@ -1,11 +1,19 @@
 .prod {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
 
   .card {
     padding: 20px;
     background-color: $headerFooterBg;
     border-radius: 10px;
-    display: flex;
-    flex-direction: column;
+    //display: flex;
+    //flex-direction: column;
+    display: grid;
+    height: 100%;
+    width: 100%;
+    grid-template-rows: max-content auto;
+    align-content: space-between;
 
     &__img {
       width: 100%;
@@ -79,7 +87,7 @@
     }
   }
 
-  &__btn{
+  &__btn {
     margin-top: 20px;
   }
 }

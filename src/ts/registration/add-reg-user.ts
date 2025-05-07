@@ -2,22 +2,9 @@ import { getAuth, createUserWithEmailAndPassword, AuthErrorCodes } from 'firebas
 import { getElement } from '../composables/use-call-dom.ts';
 import { addDoc, collection, getDocs } from 'firebase/firestore';
 import { db } from '../modules/firebace.ts';
+import { Info } from '../../typings/interfaces.ts';
 
 const auth = getAuth();
-
-interface Info {
-  id: string;
-  name: string,
-  email: string,
-  surname: string,
-  dateOfRegister: string,
-  about: string,
-  city: string,
-  dateOfBirth: string,
-  img: string,
-  phone: string,
-  uid: string,
-}
 
 export async function registerUser() {
   const emailInput = getElement<HTMLInputElement>('#email');
@@ -34,7 +21,7 @@ export async function registerUser() {
 
   try {
     const user = await createUserWithEmailAndPassword(auth, email, password);
-    const userAdd = await addDoc(collection(db, 'users'), {
+    await addDoc(collection(db, 'users'), {
       uid: user.user.uid,
       role: 'customer',
       name: name,
@@ -44,13 +31,11 @@ export async function registerUser() {
       about: '',
       city: '',
       dateOfBirth: '',
-      img: '',
+      img: 'https://firebasestorage.googleapis.com/v0/b/kindred-4b120.firebasestorage.app/o/users%2Funnamed.jpg?alt=media&token=3a5e0dbc-a6db-46dd-bced-cb0819533b37',
       phone: '',
     });
-    console.log('Document written with ID: ', userAdd.id);
-    console.log(user.user.uid);
-    document.cookie = `UID = ${user.user.uid}`;
-    document.cookie = `Role = customer`;
+    document.cookie = `UID = ${user.user.uid}; max-age=259200; path=/`;
+    document.cookie = `Role = customer; max-age=259200; path=/`;
     await addUserToLocalStorage(user.user.uid);
     window.location.href = '/Kindred/cabinet-user.html';
   } catch (error) {

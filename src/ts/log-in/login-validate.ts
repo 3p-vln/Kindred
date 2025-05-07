@@ -50,7 +50,6 @@ export function validateLogInForm() {
     ]);
 
   validator.onSuccess(async () => {
-    console.log('success');
     await logInUser();
   });
 }

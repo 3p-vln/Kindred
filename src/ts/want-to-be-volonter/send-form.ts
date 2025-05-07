@@ -2,6 +2,7 @@ import { getElement, getElements } from '../composables/use-call-dom.ts';
 import { collection, addDoc } from 'firebase/firestore';
 import { db } from '../modules/firebace.ts';
 
+const storedUserInfo = JSON.parse(localStorage.getItem('user') || '[]');
 const nameInput = getElement<HTMLInputElement>('#name');
 const surnameInput = getElement<HTMLInputElement>('#surname');
 const dateInput = getElement<HTMLInputElement>('#date');
@@ -42,6 +43,8 @@ export async function applyForm() {
     }
   });
 
+  if (!storedUserInfo) return;
+
   try {
     await addDoc(collection(db, 'applications'), {
       name: name,
@@ -52,10 +55,8 @@ export async function applyForm() {
       email: email,
       about: about,
       time: time,
-      //изменить когда будет авторизация регистрация
-      uid: time,
+      id: storedUserInfo.id,
     });
-    alert('Данные отправлены!');
   } catch (err) {
     console.error(err);
   }

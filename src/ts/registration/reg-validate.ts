@@ -92,7 +92,6 @@ export function validateRegForm() {
     ]);
 
   validator.onSuccess(async () => {
-    console.log('success');
     await registerUser();
   });
 }

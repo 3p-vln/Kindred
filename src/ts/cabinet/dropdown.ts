@@ -4,12 +4,12 @@ const dropdownMenu = getElement(".cabinet__tabs");
 const dropdownSelect = getElement(".drop-down__select");
 
 export function initDropdownMenu() {
-  if (window.innerWidth <= 768) {
+  if (window.innerWidth < 768) {
     setupDropdown();
   }
 
   window.addEventListener('resize', () => {
-    if (window.innerWidth <= 768) {
+    if (window.innerWidth < 768) {
       setupDropdown();
     } else {
       dropdownSelect?.classList.remove('active');
