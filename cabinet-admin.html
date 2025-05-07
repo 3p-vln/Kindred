@@ -5,13 +5,17 @@
   <meta charset="UTF-8" />
   <link rel="icon" type="image/svg+xml" href="/Kindred/logo.svg" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Kindred. Вхід</title>
-  <script type="module" crossorigin src="/Kindred/assets/log-in-BCz4v56p.js"></script>
+  <title>Особистий кабінет. Admin</title>
+  <script type="module" crossorigin src="/Kindred/assets/cabinet-admin-BrrzcO14.js"></script>
   <link rel="modulepreload" crossorigin href="/Kindred/assets/firebace-C7PoGh49.js">
+  <link rel="modulepreload" crossorigin href="/Kindred/assets/index-yFKSUj0c.js">
   <link rel="modulepreload" crossorigin href="/Kindred/assets/just-validate.es-C73wyOde.js">
   <link rel="modulepreload" crossorigin href="/Kindred/assets/add-reg-user-DqNex4dN.js">
+  <link rel="modulepreload" crossorigin href="/Kindred/assets/requests-DCCC18zj.js">
+  <link rel="modulepreload" crossorigin href="/Kindred/assets/redirect-Ctg2pMy4.js">
+  <link rel="modulepreload" crossorigin href="/Kindred/assets/payments-yJO0jUYF.js">
   <link rel="stylesheet" crossorigin href="/Kindred/assets/firebace-CmTAdxWg.css">
-  <link rel="stylesheet" crossorigin href="/Kindred/assets/log-in-1xWNkfcK.css">
+  <link rel="stylesheet" crossorigin href="/Kindred/assets/cabinet-admin-DYbKXJ9K.css">
 </head>
 
 <body>
@@ -60,31 +64,145 @@
 
 
   <div class="page">
-    <div class="log-in">
-  <div class="container">
-    <div class="log-in__content">
-      <h2 class="log-in__title">Вхід</h2>
-
-      <form id="log-in">
-        <div class="log-in__form form">
-          <div class="form__item">
-            <label class="form__label" for="email">E-mail <span>*</span></label>
-            <input class="form__input" type="email" id="email">
-          </div>
-
-          <div class="form__item">
-            <label class="form__label" for="password">Пароль <span>*</span></label>
-            <input class="form__input" type="password" id="password">
-          </div>
-
-          <button class="form__btn btn btn_orange" type="submit">Увійти</button>
-
-          <p class="form__error"></p>
-        </div>
-      </form>
-    </div>
+    <div class="container">
+      <div class="page__content">
+        <div class="cabinet__drop-down drop-down" id="tabs">
+  <div class="drop-down__select"></div>
+  <div class="cabinet__tabs tabs">
+    <button class="tabs__nav-btn" type="button" data-tab="#account-information">Особиста інформація</button>
+    <button class="tabs__nav-btn" type="button" data-tab="#my-orders">Збори, в яких приймав участь</button>
+    <button class="tabs__nav-btn" type="button" data-tab="#create-order">Створити збір</button>
+    <button class="tabs__nav-btn" type="button" data-tab="#create-new">Створити новину</button>
+    <button class="tabs__nav-btn" type="button" data-tab="#validate-payments">Підтвердити мої донати</button>
+    <button class="tabs__nav-btn" type="button" data-tab="#all-orders">Всі збори</button>
+    <button class="tabs__nav-btn" type="button" data-tab="#users">Всі користувачі</button>
+    <button class="tabs__nav-btn" type="button" data-tab="#volonteer-application">Заявки на волонтерство</button>
+    <button class="tabs__nav-btn tabs__nav-btn_log-out" type="button" data-tab="#log-out">Вихід</button>
   </div>
 </div>
+
+        <div class="account-info tabs__item" id="account-information">
+  <form id="acc-info">
+    <div class="account-info__form form">
+      <div class="form__item">
+        <label class="form__label" for="name">Ім’я</label>
+        <input class="form__input" type="text" id="name">
+      </div>
+
+      <div class="form__item">
+        <label class="form__label" for="surname">Прізвище</label>
+        <input class="form__input" type="text" id="surname">
+      </div>
+
+      <div class="form__item">
+        <label class="form__label" for="date">Дата народження</label>
+        <input class="form__input" type="text" id="date">
+      </div>
+
+      <div class="form__item">
+        <label class="form__label" for="city">Місто</label>
+        <input class="form__input" type="text" id="city">
+      </div>
+
+      <div class="form__item">
+        <label class="form__label" for="phone">Номер телефону</label>
+        <input class="form__input" type="text" id="phone">
+      </div>
+
+      <div class="form__item">
+        <label class="form__label" for="email">E-mail</label>
+        <input class="form__input" type="email" id="email">
+      </div>
+
+      <div class="form__item">
+        <label class="form__label" for="about">Про себе</label>
+        <textarea class="form__textarea" id="about"
+                  placeholder="Роскажіть коротко про себе, свій досвід у волонтерстві та чим саме Ви можете бути корисним"></textarea>
+      </div>
+
+      <div class="form__item">
+        <label class="form__label" for="photo">Змінити фото</label>
+        <input class="form__input" type="file" id="photo" accept="image/*">
+      </div>
+
+      <button class="form__btn btn btn_orange" type="submit">Зберегти</button>
+    </div>
+  </form>
+</div>
+
+        <div class="my-orders tabs__item" id="my-orders">
+  <div class="my-orders__content"></div>
+</div>
+
+        <div class="create-order tabs__item" id="create-order">
+  <form id="create-order-form">
+    <div class="create-order__form form">
+      <div class="form__item">
+        <label class="form__label" for="title">Назва збору</label>
+        <input class="form__input" type="text" id="title">
+      </div>
+
+      <div class="form__item">
+        <label class="form__label" for="goal">Мета (грн)</label>
+        <input class="form__input" type="number" id="goal">
+      </div>
+
+      <div class="form__item">
+        <label class="form__label" for="link">Посилання на банку</label>
+        <input class="form__input" type="text" id="link">
+      </div>
+
+      <div class="form__item">
+        <label class="form__label" for="discription">Розгорнута інформація про збір</label>
+        <textarea class="form__textarea" id="discription"></textarea>
+      </div>
+
+      <div class="form__item">
+        <label class="form__label" for="img">Зображення для збору</label>
+        <input class="form__input" type="file" id="img" accept="image/*">
+      </div>
+
+      <button class="form__btn btn btn_orange" type="submit">Створити</button>
+    </div>
+  </form>
+</div>
+
+        <div class="create-new tabs__item" id="create-new">
+  <form id="create-new-form">
+    <div class="create-order__form form">
+      <div class="form__item">
+        <label class="form__label" for="title-new">Назва новини або звіту</label>
+        <input class="form__input" type="text" id="title-new">
+      </div>
+
+      <div class="form__item">
+        <label class="form__label" for="new-text">Текст новини</label>
+        <textarea class="form__textarea" id="new-text"></textarea>
+      </div>
+
+      <div class="form__item">
+        <label class="form__label" for="new-img">Зображення для новини</label>
+        <input class="form__input" type="file" id="new-img" accept="image/*">
+      </div>
+
+      <button class="form__btn btn btn_orange" type="submit">Створити</button>
+    </div>
+  </form>
+</div>
+
+        <div class="all-orders tabs__item" id="all-orders">
+  <div class="all-orders__content"></div>
+</div>
+
+        <div class="payments tabs__item" id="validate-payments">
+  <div class="payments__content"></div>
+</div>
+
+        <div class="users tabs__item" id="users">
+  <div class="users__content"></div>
+</div>
+      </div>
+    </div>
   </div>
 
   <div class="preloader">
