@@ -1,0 +1,56 @@
+.kindred-community {
+  margin-top: 60px;
+
+  @include media-breakpoint-down(sm) {
+    margin-top: 40px;
+  }
+
+  &__content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 20px;
+
+    @include media-breakpoint-down(sm){
+      flex-direction: column;
+    }
+  }
+
+  .info {
+    &__title {
+      font-size: clamp(24px, 2.5vw, 48px);
+      font-weight: 700;
+      line-height: 1.2;
+      max-width: 776px;
+      width: 100%;
+      margin-bottom: 40px;
+
+      @include media-breakpoint-down(sm){
+        max-width: 100%;
+      }
+    }
+
+    &__text {
+      font-size: clamp(16px, 2.5vw, 24px);
+      max-width: 640px;
+      width: 100%;
+
+      @include media-breakpoint-down(sm){
+        max-width: 100%;
+      }
+
+      span {
+        font-weight: 700;
+      }
+    }
+  }
+
+  &__img {
+    aspect-ratio: 1.61/1;
+
+    img {
+      width: 100%;
+      height: 100%;
+    }
+  }
+}

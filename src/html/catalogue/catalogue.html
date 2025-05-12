@@ -8,7 +8,7 @@
           За рейтингом волонтера:
         </h3>
 
-        <ul class="filter__list">
+        <ul class="filter__list filter__list_score">
           <li class="filter__list-item">
             <label for="five">
               <input type="radio" id="five" name="score">
@@ -79,13 +79,30 @@
 
       <div class="filter__goal">
         <h3 class="filter__liable">
-          За ціллю збору (грн.):
+          За датою:
         </h3>
 
-        <div class="filter__range">
-          <input id="range" type="range" min="5000" max="1000000" value="250000">
-          <output class="range-value" for="range"></output>
-        </div>
+        <ul class="filter__list filter__list_date">
+          <li class="filter__list-item">
+            <label for="up">
+              <input type="radio" id="up" name="date">
+
+              <span class="custom-radio"></span>
+
+              з початку старіші
+            </label>
+          </li>
+
+          <li class="filter__list-item">
+            <label for="down">
+              <input type="radio" id="down" name="date">
+
+              <span class="custom-radio"></span>
+
+              з початку новіші
+            </label>
+          </li>
+        </ul>
       </div>
     </div>
   </div>

@@ -73,7 +73,7 @@ export async function renderProdCardsAll(containerName: string, allProds: Produc
   });
 }
 
-function renderCard(prod: ActualProd, container: HTMLElement) {
+export function renderCard(prod: ActualProd, container: HTMLElement) {
   const prodCard = renderElement('div', ['prod', `prod_${prod.id}`]);
 
   const card = renderElement<HTMLAnchorElement>('a', ['prod__card', 'card', `card_${prod.id}`]);

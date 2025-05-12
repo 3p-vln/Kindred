@@ -21,16 +21,20 @@ export async function renderUsersCards(containerName: string, allUsers: User[], 
 
     user.myProds.forEach((prod) => {
       allProd.forEach((product) => {
-        if(product.id === prod && product.status) userTop.succsesfulCollections++;
-      })
+        if (product.id === prod && product.status) userTop.succsesfulCollections++;
+      });
     });
 
-    topUsers.push(userTop);
+    if (userTop.succsesfulCollections !== 0 && userTop.allCollections !== 0) topUsers.push(userTop);
   });
 
-  topUsers.sort((a, b) => b.score - a.score);
+  topUsers.sort((a, b) => {
+    if (a.succsesfulCollections === b.succsesfulCollections) return b.score - a.score;
 
-  const topFiveUsers = topUsers.slice(0, 5);
+    return b.succsesfulCollections - a.succsesfulCollections;
+  });
+
+  const topFiveUsers = topUsers.slice(0, 6);
 
   topFiveUsers.forEach((user) => {
     renderUserCards(user, container);
@@ -39,6 +43,7 @@ export async function renderUsersCards(containerName: string, allUsers: User[], 
 
 function renderUserCards(user: TopUser, container: HTMLElement) {
   const userCard = renderElement<HTMLAnchorElement>('a', ['user', `user_${user.id}`]);
+  userCard.href = `user.html?id=${user.id}`;
 
   const userImg = renderElement('div', 'user__img');
   userImg.innerHTML = `

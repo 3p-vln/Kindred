@@ -33,6 +33,7 @@ export async function registerUser() {
       dateOfBirth: '',
       img: 'https://firebasestorage.googleapis.com/v0/b/kindred-4b120.firebasestorage.app/o/users%2Funnamed.jpg?alt=media&token=3a5e0dbc-a6db-46dd-bced-cb0819533b37',
       phone: '',
+      score: 3
     });
     document.cookie = `UID = ${user.user.uid}; max-age=259200; path=/`;
     document.cookie = `Role = customer; max-age=259200; path=/`;

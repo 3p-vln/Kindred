@@ -4,7 +4,7 @@ import { setValue } from './set-value.ts';
 
 const storedUserInfo = JSON.parse(localStorage.getItem('user') || '[]');
 const token = Cookies.get('UID');
-// const role = Cookies.get('Role');
+const role = Cookies.get('Role');
 
 export function redirect() {
   if(!storedUserInfo || !token) {
@@ -12,11 +12,11 @@ export function redirect() {
     return;
   }
 
-  // if(role === 'customer'){
+  if(role === 'customer'){
     setValue();
     validateForm();
-    // return;
-  // }
+    return;
+  }
 
-  // window.location.href = `/Kindred/cabinet-${role}.html`;
+  window.location.href = `/Kindred/cabinet-${role}.html`;
 }
