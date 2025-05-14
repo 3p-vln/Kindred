@@ -5,17 +5,12 @@
   <meta charset="UTF-8" />
   <link rel="icon" type="image/svg+xml" href="/Kindred/logo.svg" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Особистий кабінет</title>
-  <script type="module" crossorigin src="/Kindred/assets/cabinet-volunteer-DyyHX5qj.js"></script>
+  <title>Kindred. Про нас</title>
+  <script type="module" crossorigin src="/Kindred/assets/about-us-xy9QDxV9.js"></script>
   <link rel="modulepreload" crossorigin href="/Kindred/assets/firebace-Cb3kG9CG.js">
-  <link rel="modulepreload" crossorigin href="/Kindred/assets/index-yFKSUj0c.js">
-  <link rel="modulepreload" crossorigin href="/Kindred/assets/just-validate.es-C73wyOde.js">
-  <link rel="modulepreload" crossorigin href="/Kindred/assets/add-reg-user-DPrUt8dX.js">
   <link rel="modulepreload" crossorigin href="/Kindred/assets/requests-CDtZGZDQ.js">
-  <link rel="modulepreload" crossorigin href="/Kindred/assets/redirect-iDYVBGna.js">
-  <link rel="modulepreload" crossorigin href="/Kindred/assets/payments-C2r4uCVt.js">
   <link rel="stylesheet" crossorigin href="/Kindred/assets/firebace-CmTAdxWg.css">
-  <link rel="stylesheet" crossorigin href="/Kindred/assets/cabinet-volunteer-df-L74o0.css">
+  <link rel="stylesheet" crossorigin href="/Kindred/assets/about-us-CWjD1kv5.css">
 </head>
 
 <body>
@@ -64,139 +59,96 @@
 
 
   <div class="page">
-    <div class="container">
-      <div class="page__content">
-        <div class="cabinet__drop-down drop-down" id="tabs">
-  <div class="drop-down__select"></div>
-  <div class="cabinet__tabs tabs">
-    <button class="tabs__nav-btn" type="button" data-tab="#account-information">Особиста інформація</button>
-    <button class="tabs__nav-btn" type="button" data-tab="#my-orders">Збори, в яких приймав участь</button>
-    <button class="tabs__nav-btn" type="button" data-tab="#create-order">Створити збір</button>
-    <button class="tabs__nav-btn" type="button" data-tab="#create-new">Створити новину</button>
-    <button class="tabs__nav-btn" type="button" data-tab="#all-orders">Мої збори</button>
-    <button class="tabs__nav-btn" type="button" data-tab="#validate-payments">Підтвердити донати</button>
-    <button class="tabs__nav-btn tabs__nav-btn_log-out" type="button" data-tab="#log-out">Вихід</button>
+    <div class="kindred-community">
+  <div class="container">
+    <div class="kindred-community__content">
+      <div class="kindred-community__info info">
+        <h1 class="info__title"><span>Kindred</span> — спільнота людей, які допомагають</h1>
+        <p class="info__text">
+          Ми віримо, що допомагати — це просто. Особливо коли ти не один.
+          <br><br>
+          <span>Наша філософія:</span> Допомога — це не тільки про гроші. Це про увагу, час, підтримку, людяність.
+        </p>
+      </div>
+
+      <div class="kindred-community__img">
+        <img src="/Kindred/assets/comunity-BKuz9-dj.png" alt="kindred">
+      </div>
+    </div>
   </div>
 </div>
 
-        <div class="account-info tabs__item" id="account-information">
-  <form id="acc-info">
-    <div class="account-info__form form">
-      <div class="form__item">
-        <label class="form__label" for="name">Ім’я</label>
-        <input class="form__input" type="text" id="name">
-      </div>
+    <div class="what-is-kindred">
+  <div class="container">
+    <div class="what-is-kindred__content">
+      <h2 class="what-is-kindred__title">Що таке Kindred? </h2>
 
-      <div class="form__item">
-        <label class="form__label" for="surname">Прізвище</label>
-        <input class="form__input" type="text" id="surname">
-      </div>
+      <div class="what-is-kindred__info">
+        <p class="what-is-kindred__text">
+          Kindred — це платформа для волонтерів та людей, яким небайдуже.
+          <br><br>
+          Тут кожен може знайти спосіб допомогти: створити свій збір, підтримати інших або стати частиною волонтерської спільноти.
+          <br><br>
+          Ми створили цей простір, щоб добро було доступним, прозорим і людяним.
+        </p>
 
-      <div class="form__item">
-        <label class="form__label" for="date">Дата народження</label>
-        <input class="form__input" type="text" id="date">
-      </div>
-
-      <div class="form__item">
-        <label class="form__label" for="city">Місто</label>
-        <input class="form__input" type="text" id="city">
-      </div>
-
-      <div class="form__item">
-        <label class="form__label" for="phone">Номер телефону</label>
-        <input class="form__input" type="text" id="phone">
-      </div>
-
-      <div class="form__item">
-        <label class="form__label" for="email">E-mail</label>
-        <input class="form__input" type="email" id="email">
-      </div>
-
-      <div class="form__item">
-        <label class="form__label" for="about">Про себе</label>
-        <textarea class="form__textarea" id="about"
-                  placeholder="Роскажіть коротко про себе, свій досвід у волонтерстві та чим саме Ви можете бути корисним"></textarea>
-      </div>
-
-      <div class="form__item">
-        <label class="form__label" for="photo">Змінити фото</label>
-        <input class="form__input" type="file" id="photo" accept="image/*">
-      </div>
-
-      <button class="form__btn btn btn_orange" type="submit">Зберегти</button>
-    </div>
-  </form>
-</div>
-
-        <div class="my-orders tabs__item" id="my-orders">
-  <div class="my-orders__content"></div>
-</div>
-
-        <div class="create-order tabs__item" id="create-order">
-  <form id="create-order-form">
-    <div class="create-order__form form">
-      <div class="form__item">
-        <label class="form__label" for="title">Назва збору</label>
-        <input class="form__input" type="text" id="title">
-      </div>
-
-      <div class="form__item">
-        <label class="form__label" for="goal">Мета (грн)</label>
-        <input class="form__input" type="number" id="goal">
-      </div>
-
-      <div class="form__item">
-        <label class="form__label" for="link">Посилання на банку</label>
-        <input class="form__input" type="text" id="link">
-      </div>
-
-      <div class="form__item">
-        <label class="form__label" for="discription">Розгорнута інформація про збір</label>
-        <textarea class="form__textarea" id="discription"></textarea>
-      </div>
-
-      <div class="form__item">
-        <label class="form__label" for="img">Зображення для збору</label>
-        <input class="form__input" type="file" id="img" accept="image/*">
-      </div>
-
-      <button class="form__btn btn btn_orange" type="submit">Створити</button>
-    </div>
-  </form>
-</div>
-
-        <div class="create-new tabs__item" id="create-new">
-  <form id="create-new-form">
-    <div class="create-order__form form">
-      <div class="form__item">
-        <label class="form__label" for="title-new">Назва новини або звіту</label>
-        <input class="form__input" type="text" id="title-new">
-      </div>
-
-      <div class="form__item">
-        <label class="form__label" for="new-text">Текст новини</label>
-        <textarea class="form__textarea" id="new-text"></textarea>
-      </div>
-
-      <div class="form__item">
-        <label class="form__label" for="new-img">Зображення для новини</label>
-        <input class="form__input" type="file" id="new-img" accept="image/*">
-      </div>
-
-      <button class="form__btn btn btn_orange" type="submit">Створити</button>
-    </div>
-  </form>
-</div>
-
-        <div class="all-orders tabs__item" id="all-orders">
-  <div class="all-orders__content"></div>
-</div>
-
-        <div class="payments tabs__item" id="validate-payments">
-  <div class="payments__content"></div>
-</div>
+        <div class="what-is-kindred__img">
+          <img src="/Kindred/assets/what-is-F5gUgC91.png" alt="kindred">
+        </div>
       </div>
     </div>
+  </div>
+</div>
+
+    <div class="why-we-do-this">
+  <div class="container">
+    <div class="why-we-do-this__content">
+      <h2 class="why-we-do-this__title">Чому ми це робимо?</h2>
+
+      <div class="why-we-do-this__info">
+        <p class="why-we-do-this__text">
+          Бо ми бачимо, як багато навколо тих, хто хоче допомагати — і тих, хто чекає на цю допомогу.
+          <br><br>Kindred — це місце зустрічі цих людей.
+          <br><br>Наша мета — об'єднувати, спрощувати і показувати силу маленьких дій, що разом стають великими змінами.
+        </p>
+      </div>
+    </div>
+  </div>
+</div>
+
+    <div class="what-can-do">
+  <div class="container">
+    <div class="what-can-do__content">
+      <h2 class="what-can-do__title">Що тут можна?</h2>
+
+      <ul class="what-can-do__list">
+        <li class="what-can-do__list-item"><span>1</span>Створювати власні збори</li>
+        <li class="what-can-do__list-item"><span>2</span>Підтримувати збори інших</li>
+        <li class="what-can-do__list-item"><span>3</span>Ставати волонтером</li>
+        <li class="what-can-do__list-item"><span>4</span>Ділитися історіями добра</li>
+        <li class="what-can-do__list-item"><span>5</span>Бути частиною спільноти, якій можна довіряти</li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+    <div class="join-to-kindred">
+  <div class="container">
+    <div class="join-to-kindred__content">
+      <h2 class="join-to-kindred__title">Приєднуйся до Kindred</h2>
+      <h3 class="join-to-kindred__subtitle">Давай допомагати разом</h3>
+      
+      <div class="join-to-kindred__btns">
+        <a href="want-to-be-volonter.html" class="join-to-kindred__btn btn btn_orange">Стати волонтером</a>
+        <a href="catalogue.html" class="join-to-kindred__btn btn btn_orange">Переглянути збори</a>
+      </div>
+      
+      <div class="join-to-kindred__img">
+        <img src="/Kindred/assets/join-fdLIipZw.png" alt="kindred" />
+      </div>
+    </div>
+  </div>
+</div>
   </div>
 
   <div class="preloader">
