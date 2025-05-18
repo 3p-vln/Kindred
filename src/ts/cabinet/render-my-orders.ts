@@ -28,6 +28,14 @@ export async function renderMyOrders(allProds: Product[], allUsers: User[]) {
     const user = usersMap.get(prod.userId);
     if (!user) return;
 
+    let userScore = 0;
+
+    user.score.forEach((sc) => {
+      userScore += Number(sc);
+    });
+
+    const totalScore = userScore / user.score.length;
+
     actualProd.push({
       id: prod.id,
       img: prod.img,
@@ -38,7 +46,7 @@ export async function renderMyOrders(allProds: Product[], allUsers: User[]) {
         id: user.id,
         name: `${user.name?.[0] || '-'}.`,
         surname: user.surname,
-        score: user.score,
+        score: Math.round(totalScore),
       },
       date: prod.date,
     });

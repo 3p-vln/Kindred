@@ -32,7 +32,15 @@ export async function renderAllOrders(allProds: Product[], allUsers: User[], pay
       if (!prod) continue;
 
       const user = usersMap.get(prod.userId);
-      const score = user?.score || 0;
+      let userScore = 0;
+
+      if (!user) return;
+
+      user.score.forEach((sc) => {
+        userScore += Number(sc);
+      });
+
+      const totalScore = userScore / user.score.length;
 
       actualProd.push({
         id: prod.id,
@@ -41,10 +49,10 @@ export async function renderAllOrders(allProds: Product[], allUsers: User[], pay
         goal: prod.goal,
         collected: prod.collected,
         userInfo: {
-          id: user?.id || '',
-          name: `${user?.name || '—'}`,
-          surname: user?.surname || '',
-          score: score,
+          id: user.id || '',
+          name: `${user.name || '—'}`,
+          surname: user.surname || '',
+          score: Math.round(totalScore),
         },
         date: prod.date,
       });
@@ -55,6 +63,15 @@ export async function renderAllOrders(allProds: Product[], allUsers: User[], pay
 
     for (const prod of allProds) {
       const user = usersMap.get(prod.userId);
+      let userScore = 0;
+
+      if (!user) return;
+
+      user.score.forEach((sc) => {
+        userScore += Number(sc);
+      });
+
+      const totalScore = userScore / user.score.length;
 
       actualProd.push({
         id: prod.id,
@@ -66,7 +83,7 @@ export async function renderAllOrders(allProds: Product[], allUsers: User[], pay
           id: prod.userId,
           name: `${user?.name || '—'}`,
           surname: user?.surname || '',
-          score: user?.score || 0,
+          score: Math.round(totalScore) || 0,
         },
         date: prod.date,
       });

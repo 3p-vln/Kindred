@@ -1,0 +1,18 @@
+@import '../components/new-card';
+
+.user-news {
+  margin: 60px 0;
+
+  &__title {
+    font-size: clamp(24px, 2.5vw, 48px);
+    font-weight: 700;
+    text-align: center;
+    margin-bottom: 30px;
+  }
+
+  &__news{
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+}

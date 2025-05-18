@@ -52,6 +52,7 @@ function renderUserCards(user: UserCard, container: HTMLElement, allPayments: Pa
   const userChange = renderElement('div', ['user-card', `user-card_${user.id}`]);
 
   const userCard = renderElement<HTMLAnchorElement>('a', ['user', `user_${user.id}`]);
+  userCard.href = `user.html?id=${user.id}`
 
   const userImg = renderElement('div', 'user__img');
   userImg.innerHTML = `

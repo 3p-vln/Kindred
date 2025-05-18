@@ -1,6 +1,10 @@
 import { getElement, renderElement } from '../composables/use-call-dom.ts';
 import { ActualProd, Product, User } from '../../typings/interfaces.ts';
 
+function isActualProd(prod: ActualProd | undefined): prod is ActualProd {
+  return prod !== undefined;
+}
+
 export async function renderProdCardsActual(containerName: string, allProds: Product[], allUsers: User[]) {
   const container = getElement(containerName);
   if (!container) return;
@@ -13,6 +17,11 @@ export async function renderProdCardsActual(containerName: string, allProds: Pro
     .slice(0, 4)
     .map((prod) => {
       const user = usersMap.get(prod.userId);
+      if (!user) return;
+
+      const totalScore =
+        user.score.reduce((sum, sc) => sum + Number(sc), 0) / user.score.length;
+
       return {
         id: prod.id,
         img: prod.img,
@@ -20,14 +29,17 @@ export async function renderProdCardsActual(containerName: string, allProds: Pro
         goal: prod.goal,
         collected: prod.collected,
         userInfo: {
-          id: user?.id || '',
-          name: `${user?.name || '-'}.`,
-          surname: user?.surname || '',
-          score: user?.score || 0,
+          id: user.id,
+          name: `${user.name}.`,
+          surname: user.surname,
+          score: Math.round(totalScore),
         },
         date: prod.date,
       };
-    });
+    })
+    .filter(isActualProd);
+
+
 
   container.innerHTML = '';
   actualProd.forEach((prod) => {
@@ -47,6 +59,9 @@ export async function renderProdCardsAll(containerName: string, allProds: Produc
   allProds.forEach((prod) => {
     allUsers.forEach((user) => {
       if (prod.userId == user.id && !prod.status) {
+        const totalScore =
+          user.score.reduce((sum, sc) => sum + Number(sc), 0) / user.score.length;
+
         actualProd.push({
           id: prod.id,
           img: prod.img,
@@ -57,7 +72,45 @@ export async function renderProdCardsAll(containerName: string, allProds: Produc
             id: user.id,
             name: `${user.name || '-'}.`,
             surname: user.surname,
-            score: user.score,
+            score: Math.round(totalScore),
+          },
+          date: prod.date,
+        });
+      }
+    });
+  });
+
+  if (!container) return;
+
+  container.innerHTML = '';
+  actualProd.forEach((prod) => {
+    renderCard(prod, container);
+  });
+}
+
+export async function renderProdUsersAll(containerName: string, allProds: Product[], allUsers: User[]) {
+  const container = getElement(containerName);
+  const actualProd: ActualProd[] = [];
+
+  allProds.forEach((prod) => {
+    allUsers.forEach((user) => {
+      if (prod.userId == user.id) {
+        const totalScore =
+          user.score.reduce((sum, sc) => sum + Number(sc), 0) / user.score.length;
+
+        console.log(totalScore);
+
+        actualProd.push({
+          id: prod.id,
+          img: prod.img,
+          title: prod.title,
+          goal: prod.goal,
+          collected: prod.collected,
+          userInfo: {
+            id: user.id,
+            name: `${user.name || '-'}.`,
+            surname: user.surname,
+            score: Math.round(totalScore),
           },
           date: prod.date,
         });

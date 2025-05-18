@@ -1,0 +1,84 @@
+.user-info {
+  margin-top: 60px;
+
+  @include media-breakpoint-down(sm){
+    margin-top: 40px;
+  }
+
+  &__content {
+    display: grid;
+    grid-template-columns:auto 1fr;
+    gap: 30px;
+  }
+
+  .avatar {
+    max-width: calc(100px + (300 - 100)*((100vw - 375px) / (1920 - 375)));
+
+    &__img {
+      aspect-ratio: 1 / 1;
+      border-radius: 50%;
+      overflow: hidden;
+      margin-bottom: 20px;
+
+      img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+      }
+    }
+
+    &__reit {
+      display: flex;
+      gap: 10px;
+      justify-content: center;
+      font-size: clamp(14px, 2.5vw, 20px);
+
+      @include media-breakpoint-down(sm){
+        gap: 5px;
+      }
+
+      svg {
+        width: 20px;
+        height: 20px;
+        position: relative;
+        bottom: 5px;
+
+        @include media-breakpoint-down(sm){
+          width: 15px;
+          height: 15px;
+        }
+      }
+    }
+
+    &__btn {
+      width: fit-content;
+      height: fit-content;
+      font-size: clamp(12px, 2.5vw, 16px);
+      color: $orange;
+      text-decoration: underline;
+      display: flex;
+      margin: 0 auto;
+    }
+  }
+
+  .info {
+    &__name {
+      font-size: clamp(24px, 2.5vw, 40px);
+      font-weight: 700;
+      text-align: center;
+      margin-bottom: 25px;
+    }
+
+    &__statistic {
+      display: flex;
+      gap: 30px;
+      font-size: clamp(16px, 2.5vw, 28px);
+      margin-bottom: 20px;
+    }
+
+    &__about{
+      font-size: clamp(14px, 2.5vw, 24px);
+      line-height: 1.3;
+    }
+  }
+}

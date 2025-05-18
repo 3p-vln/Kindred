@@ -50,6 +50,14 @@ function applyFilters(allProds: Product[], allUsers: User[]) {
   allProds.forEach((prod) => {
     const user = allUsers.find((u) => u.id === prod.userId);
     if (user && !prod.status) {
+      let userScore = 0;
+
+      user.score.forEach((sc) => {
+        userScore += Number(sc);
+      });
+
+      const totalScore = userScore / user.score.length;
+
       actualProd.push({
         id: prod.id,
         img: prod.img,
@@ -60,7 +68,7 @@ function applyFilters(allProds: Product[], allUsers: User[]) {
           id: user.id,
           name: `${user.name || '-'}.`,
           surname: user.surname,
-          score: user.score,
+          score: Math.round(totalScore),
         },
         date: prod.date,
       });

@@ -44,11 +44,11 @@ function loadInfo(prod: Product, userProdInfo: User) {
   prodOwner.innerHTML = `
   <div>
     <span>Збір від </span>
-    ${userProdInfo.name} ${userProdInfo.surname}
+    <a href="user.html?id=${userProdInfo.id}">${userProdInfo.name} ${userProdInfo.surname}</a>
   </div>
    
   <div class="score">
-    ${userProdInfo.score} 
+    ${Math.round(userProdInfo.score.reduce((sum, sc) => sum + Number(sc), 0) / userProdInfo.score.length)} 
     <svg>
       <use href="#star"></use>
     </svg>

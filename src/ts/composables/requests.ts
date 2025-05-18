@@ -1,6 +1,6 @@
 import { collection, doc, getDoc, getDocs } from 'firebase/firestore';
 import { db } from '../modules/firebace.ts';
-import { Application, Payments, Product, User } from '../../typings/interfaces.ts';
+import { Application, New, Payments, Product, User } from '../../typings/interfaces.ts';
 
 export async function getAllUsers() {
   try {
@@ -24,7 +24,7 @@ export async function getAllUsers() {
         supportedProds: doc.data().supportedProds || [],
         surname: doc.data().surname || '',
         uid: doc.data().uid || '',
-        score: doc.data().score || 0,
+        score: doc.data().score || [],
       });
     });
 
@@ -55,7 +55,7 @@ export async function getCurrentUsers(userId: string) {
       supportedProds: userSnap.data()?.supportedProds || [],
       surname: userSnap.data()?.surname || '',
       uid: userSnap.data()?.uid || '',
-      score: userSnap.data()?.score || 0,
+      score: userSnap.data()?.score || [],
     };
   } catch (err) {
     console.error(err);
@@ -155,6 +155,46 @@ export async function getAllApplications() {
     });
 
     return applications;
+  } catch (err) {
+    console.error(err);
+  }
+}
+
+export async function getAllNews() {
+  try {
+    const docRefProd = await getDocs(collection(db, 'news'));
+    const news: New[] = [];
+
+    docRefProd.forEach((doc) => {
+      news.push({
+        id: doc.id,
+        img: doc.data().img || '',
+        info: doc.data().info || '',
+        title: doc.data().title || '',
+        date: doc.data().date || '',
+        userId: doc.data().userId || '',
+      });
+    });
+
+    return news;
+  } catch (err) {
+    console.error(err);
+  }
+}
+
+export async function getCurrentNew(newId: string) {
+  try {
+    const newRef = doc(db, 'news', newId);
+    const newSnap = await getDoc(newRef);
+
+    return {
+      id: newSnap.id,
+      img: newSnap.data()?.img || '',
+      info: newSnap.data()?.info || '',
+      title: newSnap.data()?.title || '',
+      date: newSnap.data()?.date || '',
+      userId: newSnap.data()?.userId || '',
+    };
   } catch (err) {
     console.error(err);
   }

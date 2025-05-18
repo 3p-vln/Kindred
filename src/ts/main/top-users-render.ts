@@ -8,6 +8,16 @@ export async function renderUsersCards(containerName: string, allUsers: User[], 
   if (!container) return;
 
   allUsers.forEach((user) => {
+    let userScore = 0;
+
+    if (!user) return;
+
+    user.score.forEach((sc) => {
+      userScore += Number(sc);
+    });
+
+    const totalScore = userScore / user.score.length;
+
     const userTop = {
       id: user.id,
       img: user.img,
@@ -16,7 +26,7 @@ export async function renderUsersCards(containerName: string, allUsers: User[], 
       allCollections: user.myProds.length,
       succsesfulCollections: 0,
       dateOfRegister: user.dateOfRegister,
-      score: user.score,
+      score: Math.round(totalScore),
     };
 
     user.myProds.forEach((prod) => {

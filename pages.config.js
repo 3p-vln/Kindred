@@ -37,6 +37,14 @@ const pages = [
     name: 'cabinet-admin',
     path: resolve(__dirname, 'cabinet-admin.html'),
   },
+  {
+    name: 'about-us',
+    path: resolve(__dirname, 'about-us.html'),
+  },
+  {
+    name: 'user',
+    path: resolve(__dirname, 'user.html'),
+  },
 ];
 
 export default pages;

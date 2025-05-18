@@ -24,6 +24,10 @@ export interface TopUser {
   score: number;
 }
 
+export interface UserAllInfo extends TopUser {
+  about: string;
+}
+
 export interface Info {
   id: string;
   name: string;
@@ -54,7 +58,7 @@ export interface User {
   supportedProds: string[];
   surname: string;
   uid: string;
-  score: number;
+  score: number[];
 }
 
 export interface Product {
@@ -138,4 +142,26 @@ export interface ApplicationInfo {
   time: string;
   dateOfRegister: string;
   img: string;
+}
+
+export interface New {
+  id: string;
+  img: string;
+  info: string;
+  title: string;
+  date: string;
+  userId: string;
+}
+
+export interface NewShortInfo {
+  id: string;
+  img: string;
+  info: string;
+  title: string;
+  date: string;
+  userInfo: {
+    id: string;
+    name: string;
+    surname: string;
+  };
 }
