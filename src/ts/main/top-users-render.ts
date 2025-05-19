@@ -8,15 +8,7 @@ export async function renderUsersCards(containerName: string, allUsers: User[], 
   if (!container) return;
 
   allUsers.forEach((user) => {
-    let userScore = 0;
-
-    if (!user) return;
-
-    user.score.forEach((sc) => {
-      userScore += Number(sc);
-    });
-
-    const totalScore = userScore / user.score.length;
+    const totalScore = user.score.reduce((sum, sc) => sum + Number(sc), 0) / user.score.length;
 
     const userTop = {
       id: user.id,
