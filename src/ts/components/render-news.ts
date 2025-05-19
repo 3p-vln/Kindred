@@ -30,17 +30,19 @@ export async function renderNewsAll(containerName: string, allNews: New[], allUs
 
   if (newsAll.length === 0) {
     container.innerHTML = 'Звітність відсутня';
-    return
+    return;
   }
 
-  newsAll.sort((a, b) => parseDate(b.date).getTime() - parseDate(a.date).getTime()).forEach((news) => {
-    renderCard(news, container);
-  });
+  newsAll
+    .sort((a, b) => parseDate(b.date).getTime() - parseDate(a.date).getTime())
+    .forEach((news) => {
+      renderCard(news, container);
+    });
 }
 
 function parseDate(dateStr: string): Date {
   const [day, month, year] = dateStr.split('.').map(Number);
-  return new Date(year, month - 1, day); // месяц от 0 до 11
+  return new Date(year, month - 1, day);
 }
 
 function shortenText(text: string, maxSentences: number = 3): string {
@@ -53,11 +55,12 @@ function shortenText(text: string, maxSentences: number = 3): string {
 
 export function renderCard(news: NewShortInfo, container: HTMLElement) {
   const newsCard = renderElement<HTMLAnchorElement>('a', ['new', `new_${news.id}`]);
+  newsCard.href = `one-new.html?id=${news.id}`;
 
   const newImg = renderElement('div', 'new__img');
   newImg.innerHTML = `
     <img src="${news.img}" alt="new"/>
-  `
+  `;
 
   const newInfo = renderElement('div', 'new__info');
 
@@ -65,7 +68,7 @@ export function renderCard(news: NewShortInfo, container: HTMLElement) {
   newTitle.innerText = news.title;
 
   const newText = renderElement('p', 'new__text');
-  newText.innerText =shortenText(news.info, 4);
+  newText.innerText = shortenText(news.info, 4);
 
   const newDate = renderElement('p', 'new__date');
   newDate.innerText = news.date;
