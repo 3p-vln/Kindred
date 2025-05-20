@@ -1,0 +1,1 @@
+import{b as t,s as a,p as r}from"./firebace-Cb3kG9CG.js";import{a as n,f as o}from"./requests-8AYIeyfP.js";import{r as l}from"./render-news-BruYhvYD.js";document.addEventListener("DOMContentLoaded",async()=>{const e=await n(),s=await o();!s||!e||(await l(".news-list__content",s,e),t(),a())});document.addEventListener("loadingIsFinished",()=>{r()});
