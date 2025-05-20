@@ -45,6 +45,14 @@ const pages = [
     name: 'user',
     path: resolve(__dirname, 'user.html'),
   },
+  {
+    name: 'news',
+    path: resolve(__dirname, 'news.html'),
+  },
+  {
+    name: 'one-new',
+    path: resolve(__dirname, 'one-new.html'),
+  },
 ];
 
 export default pages;

@@ -33,7 +33,7 @@ export async function registerUser() {
       dateOfBirth: '',
       img: 'https://firebasestorage.googleapis.com/v0/b/kindred-4b120.firebasestorage.app/o/users%2Funnamed.jpg?alt=media&token=3a5e0dbc-a6db-46dd-bced-cb0819533b37',
       phone: '',
-      score: 3
+      score: [3],
     });
     document.cookie = `UID = ${user.user.uid}; max-age=259200; path=/`;
     document.cookie = `Role = customer; max-age=259200; path=/`;
@@ -51,11 +51,11 @@ function showDbError(error: any) {
 
   switch (error.code) {
     case AuthErrorCodes.EMAIL_EXISTS:
-      errorMsg.innerText = 'Користувач з даною поштою вже зареєстрований'
+      errorMsg.innerText = 'Користувач з даною поштою вже зареєстрований';
       errorMsg.style.opacity = '1';
       break;
     default:
-      errorMsg.innerText = 'Помилка при створенні аккаунту. Повторіть спробу пізніше'
+      errorMsg.innerText = 'Помилка при створенні аккаунту. Повторіть спробу пізніше';
       errorMsg.style.opacity = '1';
       break;
   }
@@ -84,16 +84,19 @@ export async function addUserToLocalStorage(uid: string) {
 
   if (!currentUser) return;
 
-  localStorage.setItem('user', JSON.stringify({
-    id: currentUser.id,
-    name: currentUser.name,
-    email: currentUser.email,
-    surname: currentUser.surname,
-    dateOfRegister: currentUser.dateOfRegister,
-    about: currentUser.about,
-    city: currentUser.city,
-    dateOfBirth: currentUser.dateOfBirth,
-    img: currentUser.img,
-    phone: currentUser.phone,
-  }))
+  localStorage.setItem(
+    'user',
+    JSON.stringify({
+      id: currentUser.id,
+      name: currentUser.name,
+      email: currentUser.email,
+      surname: currentUser.surname,
+      dateOfRegister: currentUser.dateOfRegister,
+      about: currentUser.about,
+      city: currentUser.city,
+      dateOfBirth: currentUser.dateOfBirth,
+      img: currentUser.img,
+      phone: currentUser.phone,
+    })
+  );
 }
