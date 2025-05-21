@@ -11,7 +11,13 @@ export async function renderUserProds(user: User, allProds: Product[], allUsers:
 
   const filteredProds = allProds.filter(prod => prod.userId === user.id);
 
-  console.log(filteredProds);
+  if (filteredProds.length === 0) {
+    const container = getElement('.user-prods__prods');
+    if(!container) return;
+    container.innerHTML = '';
+    container.innerHTML = `Користувач ще не створював збори`;
+    return
+  }
 
   await renderProdUsersAll('.user-prods__prods', filteredProds, allUsers);
 }

@@ -6,7 +6,6 @@ import { getCurrentProd, getCurrentUsers } from '../composables/requests.ts';
 
 const urlParams = new URLSearchParams(window.location.search);
 const prodId = urlParams.get('id') || undefined;
-const storedUserInfo = JSON.parse(localStorage.getItem('user') || '[]');
 
 document.addEventListener('DOMContentLoaded', async () => {
   if (!prodId) return;
@@ -14,9 +13,8 @@ document.addEventListener('DOMContentLoaded', async () => {
 
   if(!prodInfo) return;
   const userProdInfo = await getCurrentUsers(prodInfo.userId)
-  const currentUsers = await getCurrentUsers(storedUserInfo.id)
 
-  if(!userProdInfo || !currentUsers) return;
+  if(!userProdInfo) return;
 
   burgerMenu();
   await loadProdInfo(prodInfo, userProdInfo);

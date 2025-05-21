@@ -58,8 +58,8 @@ export function validateForm() {
       },
       {
         rule: 'customRegexp',
-        value: /^[\p{L}]+$/u,
-        errorMessage: `Допускаються тільки літери`,
+        value: /^[\p{L}’'\-]+$/u,
+        errorMessage: `Допускаються тільки літери, апостроф та дефіс`,
       },
     ])
     .addField('#date', [

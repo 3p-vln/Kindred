@@ -39,7 +39,7 @@ export function validateCreateNewForm() {
       },
       {
         rule: 'minLength',
-        value: 20,
+        value: 200,
         errorMessage: 'Напишіть трохи більше інформації',
       },
     ])

@@ -53,6 +53,10 @@ const pages = [
     name: 'one-new',
     path: resolve(__dirname, 'one-new.html'),
   },
+  {
+    name: 'google8345002cc44d67d5',
+    path: resolve(__dirname, 'google8345002cc44d67d5.html'),
+  }
 ];
 
 export default pages;

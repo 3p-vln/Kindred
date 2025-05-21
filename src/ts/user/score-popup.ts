@@ -102,6 +102,7 @@ function loadScoreToDb(score: number, user: User) {
       });
 
       popUp?.classList.remove('popup_active');
+      scrolLock()
 
       if (!reit) return;
 
